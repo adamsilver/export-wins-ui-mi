@@ -1,72 +1,53 @@
 const transform = require( '../../../../../app/lib/transformers/campaigns' );
-const input = require( '../../../../../stubs/backend/sector_teams/campaigns' );
-const parentSectorInput = require( '../../../../../stubs/backend/parent_sector_campaigns' );
-
-/*
-return {
-		campaign: item[ 0 ],
-		change: item[ 1 ],
-		progress: {
-			confirmed: item[ 2 ],
-			unconfirmed: item[ 3 ]
-		},
-		value: {
-			confirmed: item[ 4 ],
-			total: item[ 5 ],
-		},
-		target: item[ 6 ]
-	};
-*/
+const sectorTeamCampaigns = require( '../../../../../stubs/backend/sector_teams/campaigns' );
+const hvcGroupCampaigns = require( '../../../../../stubs/backend/hvc_groups/group_campaigns' );
+const osRegionCampaigns = require( '../../../../../stubs/backend/os_regions/campaigns' );
 
 describe( 'Sector campaigns transformer', function(){
+
+	function check( input ){
+
+		const output = transform( input );
+
+		expect( Array.isArray( output ) ).toEqual( true );
+		expect( output.length ).toBeGreaterThan( 0 );
+
+		output.forEach( ( item ) => {
+
+			expect( item.campaign ).toBeDefined();
+			expect( item.change ).toBeDefined();
+			expect( item.progress ).toBeDefined();
+			expect( item.progress.confirmed ).toBeDefined();
+			expect( item.progress.unconfirmed ).toBeDefined();
+			expect( item.value ).toBeDefined();
+			expect( item.value.confirmed ).toBeDefined();
+			expect( item.value.total ).toBeDefined();
+			expect( item.target ).toBeDefined();
+			expect( item.status ).toBeDefined();
+		} );
+	}
 
 	describe( 'Sector team', function(){
 	
 		it( 'Should return the correct format', function(){
 
-			const output = transform( input );
-
-			expect( Array.isArray( output ) ).toEqual( true );
-			expect( output.length ).toBeGreaterThan( 0 );
-
-			output.forEach( ( item ) => {
-
-				expect( item.campaign ).toBeDefined();
-				expect( item.change ).toBeDefined();
-				expect( item.progress ).toBeDefined();
-				expect( item.progress.confirmed ).toBeDefined();
-				expect( item.progress.unconfirmed ).toBeDefined();
-				expect( item.value ).toBeDefined();
-				expect( item.value.confirmed ).toBeDefined();
-				expect( item.value.total ).toBeDefined();
-				expect( item.target ).toBeDefined();
-				expect( item.status ).toBeDefined();
-			} );
+			check( sectorTeamCampaigns );
 		} );
 	} );
 
-	describe( 'Parent Sector', function(){
+	describe( 'Overseas region', function(){
 	
 		it( 'Should return the correct format', function(){
 
-			const output = transform( parentSectorInput );
+			check( osRegionCampaigns );
+		} );
+	} );
 
-			expect( Array.isArray( output ) ).toEqual( true );
-			expect( output.length ).toBeGreaterThan( 0 );
+	describe( 'HVC Group Sector', function(){
+	
+		it( 'Should return the correct format', function(){
 
-			output.forEach( ( item ) => {
-
-				expect( item.campaign ).toBeDefined();
-				expect( item.change ).toBeDefined();
-				expect( item.progress ).toBeDefined();
-				expect( item.progress.confirmed ).toBeDefined();
-				expect( item.progress.unconfirmed ).toBeDefined();
-				expect( item.value ).toBeDefined();
-				expect( item.value.confirmed ).toBeDefined();
-				expect( item.value.total ).toBeDefined();
-				expect( item.target ).toBeDefined();
-				expect( item.status ).toBeDefined();
-			} );
+			check( hvcGroupCampaigns );
 		} );
 	} );
 
