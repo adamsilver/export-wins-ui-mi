@@ -75,6 +75,7 @@
     "grunt-usemin": "*",
     "jasmine": "2.5.3",
     "jasmine-core": "*",
+    "json-schema-faker": "0.4.0",
     "karma": "1.4.0",
     "karma-chrome-launcher": "*",
     "karma-jasmine": "*",
