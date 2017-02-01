@@ -3,6 +3,7 @@ const indexController = require( './controllers/controller.index' );
 const sectorTeamController = require( './controllers/controller.sector-teams' );
 const regionController = require( './controllers/controller.overseas-regions' );
 const hvcGroupController = require( './controllers/controller.hvc-groups' );
+const winController =  require( './controllers/controller.win' );
 
 module.exports = function( express, app ){
 
@@ -18,4 +19,6 @@ module.exports = function( express, app ){
 
 	app.get( '/hvc-groups/', hvcGroupController.list );
 	app.get( '/hvc-groups/:id', hvcGroupController.group );
+
+	app.get( '/win/:id', winController.win );
 };

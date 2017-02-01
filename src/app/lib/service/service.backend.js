@@ -167,6 +167,8 @@ function getHvcGroupMonths( alice, groupId ){
 	return get( alice, `/mi/hvc_groups/${ groupId }/months/`, transformMonths );
 }
 
+const getWin = require( '../../../mocks' ).win;
+
 
 /*eslint-disable no-func-assign */
 if( USE_MOCKS ){
@@ -246,5 +248,7 @@ module.exports = {
 			getHvcGroupMonths( alice, parentId ),
 			getHvcGroupCampaigns( alice, parentId )
 		] );
-	}
+	},
+
+	getWin
 };
