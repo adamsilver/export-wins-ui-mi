@@ -28,6 +28,7 @@ describe( 'Backend stub', function(){
 
 			expect( err ).toBeNull();
 			expect( response.statusCode ).toEqual( 200 );
+			expect( response.isSuccess ).toEqual( true );
 			expect( data ).toEqual( stub );
 			done();
 		} );
