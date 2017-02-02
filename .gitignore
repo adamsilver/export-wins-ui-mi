@@ -7,6 +7,6 @@ dist
 jinja_govuk_template-*
 .sass-cache
 src/public/css
-src/stubs
-src/mocks
+src/data/stubs
+src/data/mocks
 src/test/stubs

@@ -1,6 +1,6 @@
 const dataset = require( '../../../../../app/lib/data-sets/top-non-hvc' );
 
-const input = require( '../../../../../stubs/backend/sector_teams/top_non_hvcs' );
+const input = require( '../../../../../data/stubs/backend/sector_teams/top_non_hvcs' );
 const high = 1020000000;
 
 describe( 'Top non HVC dataset', function(){

@@ -1,7 +1,7 @@
 
 function getStub( path ){
 
-	return require( '../../stubs/backend/' + path );
+	return require( '../../data/stubs/backend/' + path );
 }
 
 const response = { statusCode: 200, isSuccess: true };

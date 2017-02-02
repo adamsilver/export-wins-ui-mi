@@ -1,23 +1,23 @@
 const backendStub = require( '../../../../app/lib/backend.stub' );
 
-const sectorsOverviewStub = require( '../../../../stubs/backend/sector_teams/overview' );
-const sectorTeamsTopNonHvcStub = require( '../../../../stubs/backend/sector_teams/top_non_hvcs' );
-const sectorTeamsCampaignsStub = require( '../../../../stubs/backend/sector_teams/campaigns' );
-const sectorTeamMonthsStub = require( '../../../../stubs/backend/sector_teams/months_2016-12-12' );
-const sectorTeamStub = require( '../../../../stubs/backend/sector_teams/sector_team_v2' );
-const sectorTeamsStub = require( '../../../../stubs/backend/sector_teams/' );
+const sectorsOverviewStub = require( '../../../../data/stubs/backend/sector_teams/overview' );
+const sectorTeamsTopNonHvcStub = require( '../../../../data/stubs/backend/sector_teams/top_non_hvcs' );
+const sectorTeamsCampaignsStub = require( '../../../../data/stubs/backend/sector_teams/campaigns' );
+const sectorTeamMonthsStub = require( '../../../../data/stubs/backend/sector_teams/months_2016-12-12' );
+const sectorTeamStub = require( '../../../../data/stubs/backend/sector_teams/sector_team_v2' );
+const sectorTeamsStub = require( '../../../../data/stubs/backend/sector_teams/' );
 
-const overseasRegionTopNonHvcStub = require( '../../../../stubs/backend/os_regions/top_non_hvcs' );
-const overseasRegionCampaignsStub = require( '../../../../stubs/backend/os_regions/campaigns' );
-const overseasRegionMonthsStub = require( '../../../../stubs/backend/os_regions/months' );
-const overseasRegionStub = require( '../../../../stubs/backend/os_regions/region' );
-const overseasRegionsStub = require( '../../../../stubs/backend/os_regions/' );
-const overseasRegionsOverviewStub = require( '../../../../stubs/backend/os_regions/overview' );
+const overseasRegionTopNonHvcStub = require( '../../../../data/stubs/backend/os_regions/top_non_hvcs' );
+const overseasRegionCampaignsStub = require( '../../../../data/stubs/backend/os_regions/campaigns' );
+const overseasRegionMonthsStub = require( '../../../../data/stubs/backend/os_regions/months' );
+const overseasRegionStub = require( '../../../../data/stubs/backend/os_regions/region' );
+const overseasRegionsStub = require( '../../../../data/stubs/backend/os_regions/' );
+const overseasRegionsOverviewStub = require( '../../../../data/stubs/backend/os_regions/overview' );
 
-const hvcGroupsStub = require( '../../../../stubs/backend/hvc_groups' );
-const hvcGroupStub = require( '../../../../stubs/backend/hvc_groups/group' );
-const hvcGroupCampaignsStub = require( '../../../../stubs/backend/hvc_groups/group_campaigns' );
-const hvcGroupMonthsStub = require( '../../../../stubs/backend/hvc_groups/group_months' );
+const hvcGroupsStub = require( '../../../../data/stubs/backend/hvc_groups' );
+const hvcGroupStub = require( '../../../../data/stubs/backend/hvc_groups/group' );
+const hvcGroupCampaignsStub = require( '../../../../data/stubs/backend/hvc_groups/group_campaigns' );
+const hvcGroupMonthsStub = require( '../../../../data/stubs/backend/hvc_groups/group_months' );
 
 
 describe( 'Backend stub', function(){

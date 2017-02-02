@@ -1,7 +1,7 @@
 const transform = require( '../../../../../app/lib/transformers/campaigns' );
-const sectorTeamCampaigns = require( '../../../../../stubs/backend/sector_teams/campaigns' );
-const hvcGroupCampaigns = require( '../../../../../stubs/backend/hvc_groups/group_campaigns' );
-const osRegionCampaigns = require( '../../../../../stubs/backend/os_regions/campaigns' );
+const sectorTeamCampaigns = require( '../../../../../data/stubs/backend/sector_teams/campaigns' );
+const hvcGroupCampaigns = require( '../../../../../data/stubs/backend/hvc_groups/group_campaigns' );
+const osRegionCampaigns = require( '../../../../../data/stubs/backend/os_regions/campaigns' );
 
 describe( 'Sector campaigns transformer', function(){
 

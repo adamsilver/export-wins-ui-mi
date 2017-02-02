@@ -1,0 +1,97 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Campaigns information",
+	"type": "object",
+	"properties": {
+		"hvcs": {
+			"type": "object",
+			"properties": {
+				"target": {
+					"type": "number",
+					"minimum": 0,
+					"exclusiveMinimum": true,
+					"faker": "random.number"
+				},
+				"campaigns": {
+					"type": "array",
+					"maxItems": 15,
+					"items": {
+						"type": "string",
+						"faker": "lorem.sentence"
+					}
+				}
+			},
+			"required": [ "target", "campaigns" ]
+		},
+		"name":{
+			"type": "string",
+			"faker": "lorem.words"
+		},
+		"wins": {
+			"type": "object",
+			"properties": {
+				"non_export": {
+					"$ref": "#/definitions/win-info"
+				},
+				"hvc": {
+					"$ref": "#/definitions/win-info"
+				},
+				"non_hvc": {
+					"$ref": "#/definitions/win-info"
+				}
+			},
+			"required": [ "non_export", "hvc", "non_hvc" ]
+		}
+	},
+	"required": [ "hvcs", "name", "wins" ],
+	"definitions": {
+		"win-info": {
+			"type": "object",
+			"properties": {
+				"number": {
+					"type": "object",
+					"properties": {
+						"non_confirmed": {
+							"type": "number",
+							"faker": {
+								"random.number": [ 1000 ]
+							}
+						},
+						"total": {
+							"type": "number",
+							"faker": {
+								"random.number": [ 1000 ]
+							}
+						},
+						"confirmed": {
+							"type": "number",
+							"faker": {
+								"random.number": [ 1000 ]
+							}
+						}
+					},
+					"required": [ "non_confirmed", "total", "confirmed" ]
+				},
+				"value": {
+					"type": "object",
+					"properties": {
+						"non_confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"total": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					},
+					"required": [ "non_confirmed", "total", "confirmed" ]
+				}
+			},
+			"required": [ "number", "value" ]
+		}
+	}
+}

@@ -12,7 +12,7 @@ let sectorTeamsOverviewSpy;
 let osRegionsOverviewSpy;
 let hvcGroupSpy;
 
-const hvcGroups = require( '../../../../../stubs/backend/hvc_groups' );
+const hvcGroups = require( '../../../../../data/stubs/backend/hvc_groups' );
 
 describe( 'Backend service', function(){
 
