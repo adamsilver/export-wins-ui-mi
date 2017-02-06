@@ -1,0 +1,48 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Sector top non HVCs information",
+
+	"type": "array",
+	"items": {
+		"type": "object",
+		"required": [ "averageWinValue", "region", "percentComplete", "averageWinPercent", "totalValue", "sector", "totalWins" ],
+		"properties": {
+			"averageWinValue": {
+				"type": "number",
+				"faker": "random.number"
+			},
+			"region": {
+				"type": "string",
+				"faker": "lorem.words"
+			},
+			"percentComplete": {
+				"type": "number",
+				"maximum": 100,
+				"faker": {
+					"random.number": [ 100 ]
+				}
+			},
+			"averageWinPercent": {
+				"type": "number",
+				"maximum": 1,
+				"faker": {
+					"finance.amount": [ 0, 1, 2 ]
+				}
+			},
+			"totalValue": {
+				"type": "number",
+				"faker": "random.number"
+			},
+			"sector": {
+				"type": "string",
+				"faker": "lorem.words"
+			},
+			"totalWins": {
+				"type": "number",
+				"faker": {
+					"finance.amount": [ 0, 1000 ]
+				}
+			}
+		}
+	}
+}

@@ -1,83 +1,74 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
-	"title": "Sector team information",
+	"title": "Sector months information",
 
 	"type": "object",
-	"required": [ "hvcs", "name", "wins" ],
+	"required": [ "name", "months" ],
 	"properties": {
-		"hvcs": {
-			"type": "object",
-			"required": [ "target", "campaigns" ],
-			"properties": {
-				"target": {
-					"type": "number",
-					"minimum": 0,
-					"exclusiveMinimum": true,
-					"faker": "random.number"
-				},
-				"campaigns": {
-					"type": "array",
-					"maxItems": 15,
-					"items": {
-						"type": "string",
-						"faker": "lorem.sentence"
-					}
-				}
-			}
-		},
-		"name":{
+		"name": {
 			"type": "string",
 			"faker": "lorem.words"
 		},
-		"wins": {
-			"type": "object",
-			"required": [ "non_export", "hvc", "non_hvc" ],
-			"properties": {
-				"non_export": {
-					"$ref": "#/definitions/win-info"
-				},
-				"hvc": {
-					"$ref": "#/definitions/win-info2"
-				},
-				"non_hvc": {
-					"$ref": "#/definitions/win-info3"
+		"months": {
+			"type": "array",
+			"minItems": 12,
+			"maxItems": 12,
+			"items": {
+
+				"type": "object",
+				"required": [ "date", "totals" ],
+				"properties": {
+					"date": {
+						"type": "string",
+						"faker": "date.past"
+					},
+					"totals": {
+						"type": "object",
+						"required": [ "non_export", "hvc", "non_hvc" ],
+						"properties": {
+							"non_export": {
+								"$ref": "#/definitions/item"
+							},
+							"hvc": {
+								"$ref": "#/definitions/item2"
+							},
+							"non_hvc": {
+								"$ref": "#/definitions/item3"
+							}
+						}
+					}
 				}
+
 			}
 		}
 	},
 
 	"definitions": {
-		"win-info": {
+		"item": {
 			"type": "object",
 			"required": [ "number", "value" ],
 			"properties": {
 				"number": {
 					"type": "object",
-					"required": [ "non_confirmed", "total", "confirmed" ],
+					"required": [ "non_confirmed", "confirmed", "total" ],
 					"properties": {
 						"non_confirmed": {
 							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
-							}
+							"faker": "random.number"
 						},
 						"total": {
 							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
-							}
+							"faker": "random.number"
 						},
 						"confirmed": {
 							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
-							}
+							"faker": "random.number"
 						}
 					}
 				},
 				"value": {
 					"type": "object",
-					"required": [ "non_confirmed", "total", "confirmed" ],
+					"required": [ "non_confirmed", "confirmed", "total" ],
 					"properties": {
 						"non_confirmed": {
 							"type": "number",
@@ -95,37 +86,13 @@
 				}
 			}
 		},
-		"win-info2": {
+		"item2": {
 			"type": "object",
 			"required": [ "number", "value" ],
 			"properties": {
 				"number": {
 					"type": "object",
-					"required": [ "non_confirmed", "total", "confirmed" ],
-					"properties": {
-						"non_confirmed": {
-							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
-							}
-						},
-						"total": {
-							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
-							}
-						},
-						"confirmed": {
-							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
-							}
-						}
-					}
-				},
-				"value": {
-					"type": "object",
-					"required": [ "non_confirmed", "total", "confirmed" ],
+					"required": [ "non_confirmed", "confirmed", "total" ],
 					"properties": {
 						"non_confirmed": {
 							"type": "number",
@@ -133,6 +100,26 @@
 						},
 						"total": {
 							"type": "number",
+							"maximum": 1000,
+							"faker": "random.number"
+						},
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				},
+				"value": {
+					"type": "object",
+					"required": [ "non_confirmed", "confirmed", "total" ],
+					"properties": {
+						"non_confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"total": {
+							"type": "number",
+							"maximum": 1000,
 							"faker": "random.number"
 						},
 						"confirmed": {
@@ -143,37 +130,32 @@
 				}
 			}
 		},
-		"win-info3": {
+		"item3": {
 			"type": "object",
 			"required": [ "number", "value" ],
 			"properties": {
 				"number": {
 					"type": "object",
-					"required": [ "non_confirmed", "total", "confirmed" ],
+					"required": [ "non_confirmed", "confirmed", "total" ],
 					"properties": {
 						"non_confirmed": {
 							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
-							}
+							"maximum": 1000,
+							"faker": "random.number"
 						},
 						"total": {
 							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
-							}
+							"faker": "random.number"
 						},
 						"confirmed": {
 							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
-							}
+							"faker": "random.number"
 						}
 					}
 				},
 				"value": {
 					"type": "object",
-					"required": [ "non_confirmed", "total", "confirmed" ],
+					"required": [ "non_confirmed", "confirmed", "total" ],
 					"properties": {
 						"non_confirmed": {
 							"type": "number",
