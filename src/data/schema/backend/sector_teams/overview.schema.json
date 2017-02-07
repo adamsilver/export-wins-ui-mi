@@ -1,0 +1,139 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Sector overview",
+
+	"type": "array",
+	"items": {
+		"type": "object",
+		"required": [ "hvc_colours", "id", "name", "parent_sectors", "hvc_vs_non_hvc_percentage", "hvc_target_values" ],
+		"properties": {
+			"hvc_colours": {
+				"$ref": "#/definitions/hvc-colours"
+			},
+			"id": {
+				"type": "number",
+				"faker": "random.number"
+			},
+			"name": {
+				"type": "string",
+				"faker": "lorem.words"
+			},
+			"hvc_vs_non_hvc_percentage": {
+				"type": "number",
+				"faker": {
+					"random.number": {
+						"max": 100,
+						"precision": 0.001
+					}
+				}
+			},
+			"hvc_target_values": {
+				"$ref": "#/definitions/target-values"
+			},
+			"parent_sectors": {
+				"type": "array",
+				"minItems": 1,
+				"items": {
+					"type": "object",
+					"required": [ "name", "hvc_colours", "hvc_target_values", "hvc_vs_non_hvc_percentage", "id" ],
+					"properties": {
+						"name": {
+							"type": "string",
+							"faker": "lorem.words"
+						},
+						"hvc_colours": {
+							"$ref": "#/definitions/hvc-colours"
+						},
+						"hvc_target_values": {
+							"$ref": "#/definitions/target-values2"
+						},
+						"hvc_vs_non_hvc_percentage": {
+							"type": "number",
+							"faker": {
+								"random.number": {
+									"max": 100,
+									"precision": 0.001
+								}
+							}
+						},
+						"id": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"hvc-colours": {
+			"type": "object",
+			"properties": {
+				"red": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 25 ]
+					}
+				},
+				"amber": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 25 ]
+					}
+				},
+				"green": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 25 ]
+					}
+				}
+			}
+		},
+		"target-values": {
+			"type": "object",
+			"required": [ "target_percentage", "current", "target" ],
+			"properties": {
+				"target_percentage": {
+					"type": "number",
+					"faker": {
+						"random.number": {
+							"max": 100,
+							"precision": 0.001
+						}
+					}
+				},
+				"current": {
+					"type": "number",
+					"faker": "random.number"
+				},
+				"target": {
+					"type": "number",
+					"faker": "random.number"
+				}
+			}
+		},
+		"target-values2": {
+			"type": "object",
+			"required": [ "target_percentage", "current", "target" ],
+			"properties": {
+				"target_percentage": {
+					"type": "number",
+					"faker": {
+						"random.number": {
+							"max": 100,
+							"precision": 0.001
+						}
+					}
+				},
+				"current": {
+					"type": "number",
+					"faker": "random.number"
+				},
+				"target": {
+					"type": "number",
+					"faker": "random.number"
+				}
+			}
+		}
+	}
+}
