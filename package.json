@@ -14,6 +14,7 @@
     "test:unit": "JASMINE_CONFIG_PATH=src/test/app/jasmine.json jasmine",
     "test:stubs": "JASMINE_CONFIG_PATH=src/test/data/stubs/jasmine.json jasmine",
     "test:mocks": "JASMINE_CONFIG_PATH=src/test/data/mocks/jasmine.json jasmine",
+    "test:faker": "JASMINE_CONFIG_PATH=src/test/data/faker/jasmine.json jasmine",
     "test:client": "karma start",
     "heroku-postbuild": "npm run build:dist",
     "start": "NODE_ENV=production node --use-strict dist/server.js",
