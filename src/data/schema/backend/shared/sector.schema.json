@@ -1,49 +1,53 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
-	"title": "Sector months information",
+	"title": "Sector information",
 
 	"type": "object",
-	"required": [ "name", "months" ],
+	"required": [ "hvcs", "name", "wins" ],
 	"properties": {
-		"name": {
+		"hvcs": {
+			"type": "object",
+			"required": [ "target", "campaigns" ],
+			"properties": {
+				"target": {
+					"type": "number",
+					"minimum": 0,
+					"exclusiveMinimum": true,
+					"faker": "random.number"
+				},
+				"campaigns": {
+					"type": "array",
+					"maxItems": 15,
+					"items": {
+						"type": "string",
+						"faker": "lorem.sentence"
+					}
+				}
+			}
+		},
+		"name":{
 			"type": "string",
 			"faker": "lorem.words"
 		},
-		"months": {
-			"type": "array",
-			"minItems": 12,
-			"maxItems": 12,
-			"items": {
-
-				"type": "object",
-				"required": [ "date", "totals" ],
-				"properties": {
-					"date": {
-						"type": "string",
-						"faker": "date.past"
-					},
-					"totals": {
-						"type": "object",
-						"required": [ "non_export", "export" ],
-						"properties": {
-							"non_export": {
-								"$ref": "#/definitions/item"
-							},
-							"export": {
-								"type": "object",
-								"required": [ "hvc", "non_hvc", "totals" ],
-								"properties": {
-									"hvc": {
-										"$ref": "#/definitions/item2"
-									},
-									"non_hvc": {
-										"$ref": "#/definitions/item3"
-									},
-									"totals": {
-										"$ref": "#/definitions/grand-totals"
-									}
-								}
-							}
+		"wins": {
+			"type": "object",
+			"required": [ "non_export", "export" ],
+			"properties": {
+				"non_export": {
+					"$ref": "#/definitions/win-info"
+				},
+				"export": {
+					"type": "object",
+					"required": [ "hvc", "non_hvc", "totals" ],
+					"properties": {
+						"hvc": {
+							"$ref": "#/definitions/win-info2"
+						},
+						"non_hvc": {
+							"$ref": "#/definitions/win-info3"
+						},
+						"totals": {
+							"$ref": "#/definitions/grand-totals"
 						}
 					}
 				}
@@ -53,31 +57,37 @@
 
 	"definitions": {
 
-		"item": {
+		"win-info": {
 			"type": "object",
 			"required": [ "number", "value" ],
 			"properties": {
 				"number": {
 					"type": "object",
-					"required": [ "unconfirmed", "confirmed", "total" ],
+					"required": [ "unconfirmed", "total", "confirmed" ],
 					"properties": {
 						"unconfirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						},
 						"total": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						},
 						"confirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						}
 					}
 				},
 				"value": {
 					"type": "object",
-					"required": [ "unconfirmed", "confirmed", "total" ],
+					"required": [ "unconfirmed", "total", "confirmed" ],
 					"properties": {
 						"unconfirmed": {
 							"type": "number",
@@ -96,32 +106,37 @@
 			}
 		},
 
-		"item2": {
+		"win-info2": {
 			"type": "object",
 			"required": [ "number", "value" ],
 			"properties": {
 				"number": {
 					"type": "object",
-					"required": [ "unconfirmed", "confirmed", "total" ],
+					"required": [ "unconfirmed", "total", "confirmed" ],
 					"properties": {
 						"unconfirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						},
 						"total": {
 							"type": "number",
-							"maximum": 1000,
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						},
 						"confirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						}
 					}
 				},
 				"value": {
 					"type": "object",
-					"required": [ "unconfirmed", "confirmed", "total" ],
+					"required": [ "unconfirmed", "total", "confirmed" ],
 					"properties": {
 						"unconfirmed": {
 							"type": "number",
@@ -129,7 +144,6 @@
 						},
 						"total": {
 							"type": "number",
-							"maximum": 1000,
 							"faker": "random.number"
 						},
 						"confirmed": {
@@ -141,32 +155,37 @@
 			}
 		},
 
-		"item3": {
+		"win-info3": {
 			"type": "object",
 			"required": [ "number", "value" ],
 			"properties": {
 				"number": {
 					"type": "object",
-					"required": [ "unconfirmed", "confirmed", "total" ],
+					"required": [ "unconfirmed", "total", "confirmed" ],
 					"properties": {
 						"unconfirmed": {
 							"type": "number",
-							"maximum": 1000,
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						},
 						"total": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						},
 						"confirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						}
 					}
 				},
 				"value": {
 					"type": "object",
-					"required": [ "unconfirmed", "confirmed", "total" ],
+					"required": [ "unconfirmed", "total", "confirmed" ],
 					"properties": {
 						"unconfirmed": {
 							"type": "number",

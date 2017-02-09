@@ -28,7 +28,7 @@ module.exports = {
 
 			if( filesWritten === filesToWrite ){
 
-				console.log( '%s files written', filesWritten );
+				console.log( '%s file%s written', filesWritten, ( filesWritten === 1 ? '' : 's' ) );
 			}
 		}
 
