@@ -10,3 +10,4 @@ src/public/css
 src/data/stubs
 src/data/mocks
 src/test/stubs
+src/data/faker/**/output
