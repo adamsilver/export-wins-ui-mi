@@ -59,9 +59,9 @@
 								"properties": {
 									"value": {
 										"type": "object",
-										"required": [ "non_confirmed", "confirmed", "total" ],
+										"required": [ "unconfirmed", "confirmed", "total" ],
 										"properties": {
-											"non_confirmed": {
+											"unconfirmed": {
 												"type": "number",
 												"faker": "random.number"
 											},
@@ -76,9 +76,9 @@
 									},
 									"number": {
 										"type": "object",
-										"required": [ "non_confirmed", "confirmed", "total" ],
+										"required": [ "unconfirmed", "confirmed", "total" ],
 										"properties": {
-											"non_confirmed": {
+											"unconfirmed": {
 												"type": "number",
 												"faker": {
 													"random.number": [ 1000 ]

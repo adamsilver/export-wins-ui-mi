@@ -24,9 +24,9 @@
 			},
 			"averageWinPercent": {
 				"type": "number",
-				"maximum": 1,
+				"maximum": 100,
 				"faker": {
-					"finance.amount": [ 0, 1, 2 ]
+					"random.number": [ 100 ]
 				}
 			},
 			"totalValue": {
@@ -40,7 +40,7 @@
 			"totalWins": {
 				"type": "number",
 				"faker": {
-					"finance.amount": [ 0, 1000 ]
+					"random.number": [ 1000 ]
 				}
 			}
 		}

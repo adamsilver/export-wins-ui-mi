@@ -31,31 +31,41 @@
 		},
 		"wins": {
 			"type": "object",
-			"required": [ "non_export", "hvc", "non_hvc" ],
+			"required": [ "non_export", "export" ],
 			"properties": {
 				"non_export": {
 					"$ref": "#/definitions/win-info"
 				},
-				"hvc": {
-					"$ref": "#/definitions/win-info2"
-				},
-				"non_hvc": {
-					"$ref": "#/definitions/win-info3"
+				"export": {
+					"type": "object",
+					"required": [ "hvc", "non_hvc", "totals" ],
+					"properties": {
+						"hvc": {
+							"$ref": "#/definitions/win-info2"
+						},
+						"non_hvc": {
+							"$ref": "#/definitions/win-info3"
+						},
+						"totals": {
+							"$ref": "#/definitions/grand-totals"
+						}
+					}
 				}
 			}
 		}
 	},
 
 	"definitions": {
+
 		"win-info": {
 			"type": "object",
 			"required": [ "number", "value" ],
 			"properties": {
 				"number": {
 					"type": "object",
-					"required": [ "non_confirmed", "total", "confirmed" ],
+					"required": [ "unconfirmed", "total", "confirmed" ],
 					"properties": {
-						"non_confirmed": {
+						"unconfirmed": {
 							"type": "number",
 							"faker": {
 								"random.number": [ 1000 ]
@@ -77,9 +87,9 @@
 				},
 				"value": {
 					"type": "object",
-					"required": [ "non_confirmed", "total", "confirmed" ],
+					"required": [ "unconfirmed", "total", "confirmed" ],
 					"properties": {
-						"non_confirmed": {
+						"unconfirmed": {
 							"type": "number",
 							"faker": "random.number"
 						},
@@ -95,15 +105,16 @@
 				}
 			}
 		},
+
 		"win-info2": {
 			"type": "object",
 			"required": [ "number", "value" ],
 			"properties": {
 				"number": {
 					"type": "object",
-					"required": [ "non_confirmed", "total", "confirmed" ],
+					"required": [ "unconfirmed", "total", "confirmed" ],
 					"properties": {
-						"non_confirmed": {
+						"unconfirmed": {
 							"type": "number",
 							"faker": {
 								"random.number": [ 1000 ]
@@ -125,9 +136,9 @@
 				},
 				"value": {
 					"type": "object",
-					"required": [ "non_confirmed", "total", "confirmed" ],
+					"required": [ "unconfirmed", "total", "confirmed" ],
 					"properties": {
-						"non_confirmed": {
+						"unconfirmed": {
 							"type": "number",
 							"faker": "random.number"
 						},
@@ -143,15 +154,16 @@
 				}
 			}
 		},
+
 		"win-info3": {
 			"type": "object",
 			"required": [ "number", "value" ],
 			"properties": {
 				"number": {
 					"type": "object",
-					"required": [ "non_confirmed", "total", "confirmed" ],
+					"required": [ "unconfirmed", "total", "confirmed" ],
 					"properties": {
-						"non_confirmed": {
+						"unconfirmed": {
 							"type": "number",
 							"faker": {
 								"random.number": [ 1000 ]
@@ -173,9 +185,9 @@
 				},
 				"value": {
 					"type": "object",
-					"required": [ "non_confirmed", "total", "confirmed" ],
+					"required": [ "unconfirmed", "total", "confirmed" ],
 					"properties": {
-						"non_confirmed": {
+						"unconfirmed": {
 							"type": "number",
 							"faker": "random.number"
 						},
@@ -184,6 +196,50 @@
 							"faker": "random.number"
 						},
 						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				}
+			}
+		},
+
+		"grand-totals": {
+			"type": "object",
+			"required": [ "number", "value" ],
+			"properties": {
+				"number": {
+					"type": "object",
+					"required": [ "unconfirmed", "confirmed", "grand_total" ],
+					"properties": {
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"unconfirmed": {
+							"type": "number",
+							"maximum": 1000,
+							"faker": "random.number"
+						},
+						"grand_total": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				},
+				"value": {
+					"type": "object",
+					"required": [ "unconfirmed", "confirmed", "grand_total" ],
+					"properties": {
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"unconfirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"grand_total": {
 							"type": "number",
 							"faker": "random.number"
 						}

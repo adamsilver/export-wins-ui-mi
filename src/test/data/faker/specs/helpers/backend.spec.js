@@ -31,12 +31,12 @@ describe( 'Backend helpers', function(){
 				test1: {
 					number: {
 						confirmed: 100,
-						non_confirmed: 100,
+						unconfirmed: 100,
 						total: 1000
 					},
 					value: {
 						confirmed: 200,
-						non_confirmed: 200,
+						unconfirmed: 200,
 						total: 1000
 					}
 				},
@@ -44,12 +44,12 @@ describe( 'Backend helpers', function(){
 				test2: {
 					number: {
 						confirmed: 250,
-						non_confirmed: 250,
+						unconfirmed: 250,
 						total: 1000
 					},
 					value: {
 						confirmed: 1000,
-						non_confirmed: 1000,
+						unconfirmed: 1000,
 						total: 1000
 					}
 				}
@@ -93,21 +93,99 @@ describe( 'Backend helpers', function(){
 
 			let values = {
 				current: 25,
-				target_performance: 25,
+				target_percentage: 25,
 				target: 300
 			};
 
 			let values2 = {
 				current: 100,
-				target_performance: 50,
+				target_percentage: 50,
 				target: 1000
-			} ;
+			};
+
+			let values3 = {
+				current: 62132,
+				target_percentage: 52,
+				target: 1
+			};
 
 			helpers.calculateTotal( values );
 			helpers.calculateTotal( values2 );
+			helpers.calculateTotal( values3 );
 	
 			expect( values.target ).toEqual( 100 );
 			expect( values2.target ).toEqual( 200 );
+			expect( values3.target ).toEqual( 119485 );
+		} );
+	} );
+
+	describe( 'calculateConfirmedPercentages', function(){
+	
+		it( 'Should calculate the non_hvc percentage', function(){
+	
+			let percentages = {
+				hvc: 50,
+				non_hvc: 70
+			};
+
+			helpers.calculateConfirmedPercentages( percentages );
+
+			expect( percentages.non_hvc ).toEqual( 50 );
+		} );
+	} );
+
+	describe( 'calculateExportTotals', function(){
+	
+		it( 'Should calculat the confirmed, unconfirmed and grand_total', function(){
+	
+			let exportVal = {
+				hvc: {
+					number: {
+						confirmed: 50,
+						unconfirmed: 100,
+						total: 150
+					},
+					value: {
+						confirmed: 150,
+						unconfirmed: 200,
+						total: 350
+					}
+				},
+				non_hvc: {
+					number: {
+						confirmed: 250,
+						unconfirmed: 300,
+						total: 550
+					},
+					value: {
+						confirmed: 350,
+						unconfirmed: 400,
+						total: 750
+					}
+				},
+				totals: {
+					number: {
+						confirmed: 0,
+						unconfirmed: 0,
+						grand_total: 0
+					},
+					value: {
+						confirmed: 0,
+						unconfirmed: 0,
+						grand_total: 0
+					}
+				}
+			};
+
+			helpers.calculateExportTotals( exportVal );
+
+			expect( exportVal.totals.number.confirmed ).toEqual( 300 );
+			expect( exportVal.totals.number.unconfirmed ).toEqual( 400 );
+			expect( exportVal.totals.number.grand_total ).toEqual( 700 );
+
+			expect( exportVal.totals.value.confirmed ).toEqual( 500 );
+			expect( exportVal.totals.value.unconfirmed ).toEqual( 600 );
+			expect( exportVal.totals.value.grand_total ).toEqual( 1100 );
 		} );
 	} );
 } );
