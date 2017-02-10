@@ -30,13 +30,13 @@ module.exports = function( files ){
 		}
 	}
 
-	for( let [ file, json ] of files ){
+	for( let [ file, data ] of files ){
 
 		filesToWrite++;
 
 		mkdirp( file );
 
-		fs.writeFile( file, json, ( err ) => {
+		fs.writeFile( file, data, ( err ) => {
 
 			if( err ){
 

@@ -11,3 +11,4 @@ src/data/stubs
 src/data/mocks
 src/test/stubs
 src/data/faker/**/output
+src/data/fake-stubs
