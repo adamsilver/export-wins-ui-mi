@@ -3,7 +3,6 @@
   "version": "1.9.4",
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
-  "govuk-template-version": "0.19.1",
   "engines": {
     "node": "6.9.1",
     "npm": "3.10.8"
@@ -27,7 +26,7 @@
     "dist": "npm run build:dist && npm run start",
     "dist-install": "cd dist && npm install --production",
     "lint": "eslint .",
-    "watch:sass": "node-sass src/public/sass/main.scss src/public/css/main.css --source-map src/public/css/main.css.map --source-map-contents --include-path ./node_modules/@uktrade/trade_elements/dist/sass/ -w -r",
+    "watch:sass": "npm run sass:dev && node-sass src/public/sass/main.scss src/public/css/main.css --source-map src/public/css/main.css.map --source-map-contents --include-path ./node_modules/@uktrade/trade_elements/dist/sass/ -w -r",
     "sass:dev": "node-sass src/public/sass/main.scss src/public/css/main.css --source-map src/public/css/main.css.map --source-map-contents --include-path ./node_modules/@uktrade/trade_elements/dist/sass/",
     "sass:prod": "node-sass src/public/sass/main.scss src/public/css/main.css --include-path ./node_modules/@uktrade/trade_elements/dist/sass/ -x --output-style compressed"
   },

@@ -1,7 +1,18 @@
+const config = require( '../config' );
+const logger = require( './logger' );
+
+let stubPath = '../../data/stubs/backend/';
+
+if( config.backend.fake ){
+
+	logger.warn( 'Using fake stubs for backend' );
+
+	stubPath = '../../data/fake-stubs/backend/';
+}
 
 function getStub( path ){
 
-	return require( '../../data/stubs/backend/' + path );
+	return require( stubPath + path );
 }
 
 const response = { statusCode: 200, isSuccess: true };
@@ -11,8 +22,8 @@ const stubs = [
 	[ /^\/mi\/sector_teams\/overview\/$/, getStub( 'sector_teams/overview' ) ],
 	[ /^\/mi\/sector_teams\/[0-9]+\/top_non_hvcs\/$/, getStub( 'sector_teams/top_non_hvcs' ) ],
 	[ /^\/mi\/sector_teams\/[0-9]+\/campaigns\/$/, getStub( 'sector_teams/campaigns' ) ],
-	[ /^\/mi\/sector_teams\/[0-9]+\/months\/$/, getStub( 'sector_teams/months_2016-12-12' ) ],
-	[ /^\/mi\/sector_teams\/[0-9]+\/$/, getStub( 'sector_teams/sector_team_v2' ) ],
+	[ /^\/mi\/sector_teams\/[0-9]+\/months\/$/, getStub( 'sector_teams/months' ) ],
+	[ /^\/mi\/sector_teams\/[0-9]+\/$/, getStub( 'sector_teams/sector_team' ) ],
 	[ /^\/mi\/sector_teams\/$/, getStub( 'sector_teams' ) ],
 
 	[ /^\/mi\/os_regions\/[0-9]+\/top_non_hvcs\/$/, getStub( 'os_regions/top_non_hvcs' ) ],

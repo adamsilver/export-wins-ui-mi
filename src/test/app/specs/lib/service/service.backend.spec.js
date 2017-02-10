@@ -1,6 +1,6 @@
 const proxyquire = require( 'proxyquire' );
 
-const configStub = { backend: { stub: true } };
+const configStub = { backend: { stub: true, fake: false } };
 
 let alice = 'test';
 let stubs;

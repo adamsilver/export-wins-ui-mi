@@ -1,10 +1,13 @@
-const backendStub = require( '../../../../app/lib/backend.stub' );
+const proxyquire = require( 'proxyquire' );
+const backendStub = proxyquire( '../../../../app/lib/backend.stub', {
+	'../config':  { backend: { stub: true, fake: false } }
+} );
 
 const sectorsOverviewStub = require( '../../../../data/stubs/backend/sector_teams/overview' );
 const sectorTeamsTopNonHvcStub = require( '../../../../data/stubs/backend/sector_teams/top_non_hvcs' );
 const sectorTeamsCampaignsStub = require( '../../../../data/stubs/backend/sector_teams/campaigns' );
-const sectorTeamMonthsStub = require( '../../../../data/stubs/backend/sector_teams/months_2016-12-12' );
-const sectorTeamStub = require( '../../../../data/stubs/backend/sector_teams/sector_team_v2' );
+const sectorTeamMonthsStub = require( '../../../../data/stubs/backend/sector_teams/months' );
+const sectorTeamStub = require( '../../../../data/stubs/backend/sector_teams/sector_team' );
 const sectorTeamsStub = require( '../../../../data/stubs/backend/sector_teams/' );
 
 const overseasRegionTopNonHvcStub = require( '../../../../data/stubs/backend/os_regions/top_non_hvcs' );

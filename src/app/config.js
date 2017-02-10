@@ -34,6 +34,7 @@ module.exports = {
 		timeout: env( 'MI_TIMEOUT', 1000 ),
 
 		stub: bool( 'STUB_MI', false ),
+		fake: bool( 'FAKE_MI', false ),
 		mock: bool( 'MOCK_MI', false )
 	}
 };

@@ -2,7 +2,7 @@ const transform = require( '../../../../../app/lib/transformers/months' );
 const input = require( '../../../../../data/stubs/backend/sector_teams/months' );
 const hvcGroupInput = require( '../../../../../data/stubs/backend/hvc_groups/group_months' );
 const inputOverTarget = require( '../../../../../data/stubs/backend/sector_teams/months-over-target' );
-const input20161212 = require( '../../../../../data/stubs/backend/sector_teams/months_2016-12-12' );
+const input20161212 = require( '../../../../../data/stubs/backend/sector_teams/months' );
 
 
 describe( 'Sector months transformer', function(){

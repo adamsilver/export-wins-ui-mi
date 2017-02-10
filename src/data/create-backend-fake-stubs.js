@@ -9,6 +9,7 @@ const outputPath = path.resolve( __dirname, 'fake-stubs/backend' );
 
 const jsonFiles = {
 
+	'hvc_groups/index': sharedJson.createIndex(),
 	'hvc_groups/group': sharedJson.createSector(),
 	'hvc_groups/group_campaigns': sharedJson.createCampaigns(),
 	'hvc_groups/group_months': sharedJson.createMonths(),
