@@ -3,6 +3,7 @@
 	"title": "List at root",
 
 	"type": "array",
+	"minItems": 5,
 	"items": {
 		"type": "object",
 		"required": [ "id", "name" ],

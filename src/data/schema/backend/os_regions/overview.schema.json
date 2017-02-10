@@ -3,6 +3,7 @@
 	"title": "Overseas regions overview",
 
 	"type": "array",
+	"minItems": 5,
 	"items": {
 		"type": "object",
 		"required": [ "hvc_performance", "id", "name", "markets", "confirmed_percent", "hvc_target_values" ],

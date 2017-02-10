@@ -3,6 +3,7 @@
 	"title": "Sector overview",
 
 	"type": "array",
+	"minItems": 5,
 	"items": {
 		"type": "object",
 		"required": [ "hvc_performance", "id", "name", "hvc_groups", "confirmed_percent", "hvc_target_values" ],

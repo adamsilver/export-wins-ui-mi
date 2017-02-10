@@ -35,6 +35,7 @@
 		"campaigns": {
 
 			"type": "array",
+			"maxItems": 15,
 			"items": {
 
 				"type": "object",

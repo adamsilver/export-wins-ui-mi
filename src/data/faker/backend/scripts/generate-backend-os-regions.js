@@ -2,7 +2,7 @@ const jsf = require( 'json-schema-faker' );
 const path = require( 'path' );
 
 const writeFiles = require( '../../helpers/write-files' );
-const calculateTotal = require( './lib/calculate-total' );
+const calculateTarget = require( './lib/calculate-target' );
 const calculateConfirmedPercentages = require( './lib/calculate-confirmed-percentages' );
 
 const overviewSchema = require( '../../../schema/backend/os_regions/overview.schema' );
@@ -17,7 +17,7 @@ let osRegionsJson = {
 for( let region of osRegionsJson.overview ){
 
 	calculateConfirmedPercentages( region.confirmed_percent );
-	calculateTotal( region.hvc_target_values );
+	calculateTarget( region.hvc_target_values );
 }
 
 for( let file in osRegionsJson ){

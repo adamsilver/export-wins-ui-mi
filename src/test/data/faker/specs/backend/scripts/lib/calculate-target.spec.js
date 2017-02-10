@@ -1,4 +1,4 @@
-const calculateTotal = require( '../../../../../../../data/faker/backend/scripts/lib/calculate-total' );
+const calculateTotal = require( '../../../../../../../data/faker/backend/scripts/lib/calculate-target' );
 
 describe( 'calculateTotal', function(){
 

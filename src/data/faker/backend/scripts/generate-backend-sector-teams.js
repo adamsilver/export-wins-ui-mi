@@ -2,7 +2,7 @@ const jsf = require( 'json-schema-faker' );
 const path = require( 'path' );
 
 const writeFiles = require( '../../helpers/write-files' );
-const calculateTotal = require( './lib/calculate-total' );
+const calculateTarget = require( './lib/calculate-target' );
 const calculateConfirmedPercentages = require( './lib/calculate-confirmed-percentages' );
 
 const listSchema = require( '../../../schema/backend/sector_teams/index.schema' );
@@ -19,12 +19,12 @@ let sectorTeamJson = {
 
 for( let sector of sectorTeamJson.overview ){
 
-	calculateTotal( sector.hvc_target_values );
+	calculateTarget( sector.hvc_target_values );
 	calculateConfirmedPercentages( sector.confirmed_percent );
 
 	for( let hvcGroup of sector.hvc_groups ){
 
-		calculateTotal( hvcGroup.hvc_target_values );
+		calculateTarget( hvcGroup.hvc_target_values );
 		calculateConfirmedPercentages( hvcGroup.confirmed_percent );
 	}
 }
