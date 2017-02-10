@@ -1,28 +1,18 @@
-const jsf = require( 'json-schema-faker' );
 const path = require( 'path' );
 
+const osRegionsJson = require( './os-regions-json' );
 const writeFiles = require( '../../helpers/write-files' );
-const calculateTarget = require( './lib/calculate-target' );
-const calculateConfirmedPercentages = require( './lib/calculate-confirmed-percentages' );
-
-const overviewSchema = require( '../../../schema/backend/os_regions/overview.schema' );
 
 let files = [];
 let outputPath = path.resolve( __dirname, '../output/os_regions/' );
 
-let osRegionsJson = {
-	overview: jsf( overviewSchema )
+let jsonFiles = {
+	overview: osRegionsJson.createOverview()
 };
 
-for( let region of osRegionsJson.overview ){
+for( let file in jsonFiles ){
 
-	calculateConfirmedPercentages( region.confirmed_percent );
-	calculateTarget( region.hvc_target_values );
-}
-
-for( let file in osRegionsJson ){
-
-	const json = JSON.stringify( osRegionsJson[ file ], null, 3 );
+	const json = JSON.stringify( jsonFiles[ file ], null, 3 );
 	const fileName = ( outputPath + '/' + file + '.json' );
 
 	files.push( [ fileName, json ] );

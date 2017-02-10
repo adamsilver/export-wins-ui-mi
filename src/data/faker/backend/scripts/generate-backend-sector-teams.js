@@ -1,37 +1,19 @@
-const jsf = require( 'json-schema-faker' );
 const path = require( 'path' );
 
+const sectorTeamsJson = require( './sector-teams-json' );
 const writeFiles = require( '../../helpers/write-files' );
-const calculateTarget = require( './lib/calculate-target' );
-const calculateConfirmedPercentages = require( './lib/calculate-confirmed-percentages' );
-
-const listSchema = require( '../../../schema/backend/sector_teams/index.schema' );
-const overviewSchema = require( '../../../schema/backend/sector_teams/overview.schema' );
 
 let files = [];
 let outputPath = path.resolve( __dirname, '../output/sector_teams/' );
 
-let sectorTeamJson = {
-	index: jsf( listSchema ),
-	overview: jsf( overviewSchema )
+let jsonFiles = {
+	index: sectorTeamsJson.createIndex(),
+	overview: sectorTeamsJson.createOverview()
 };
 
+for( let file in jsonFiles ){
 
-for( let sector of sectorTeamJson.overview ){
-
-	calculateTarget( sector.hvc_target_values );
-	calculateConfirmedPercentages( sector.confirmed_percent );
-
-	for( let hvcGroup of sector.hvc_groups ){
-
-		calculateTarget( hvcGroup.hvc_target_values );
-		calculateConfirmedPercentages( hvcGroup.confirmed_percent );
-	}
-}
-
-for( let file in sectorTeamJson ){
-
-	const json = JSON.stringify( sectorTeamJson[ file ], null, 3 );
+	const json = JSON.stringify( jsonFiles[ file ], null, 3 );
 	const fileName = ( outputPath + '/' + file + '.json' );
 
 	files.push( [ fileName, json ] );
