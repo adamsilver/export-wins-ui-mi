@@ -1,5 +1,7 @@
 const transform = require( '../../../../../app/lib/transformers/sector-teams-overview' );
-const input = require( '../../../../../data/stubs/backend/sector_teams/overview' );
+const getBackendStub = require( '../../../helpers/get-backend-stub' );
+
+const input = getBackendStub( '/sector_teams/overview' );
 
 describe( 'Sector teams overview transformer', function(){
 

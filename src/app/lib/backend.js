@@ -1,4 +1,3 @@
-
 const config = require( '../config' );
 const request = require( 'request' );
 const raven = require( 'raven' );

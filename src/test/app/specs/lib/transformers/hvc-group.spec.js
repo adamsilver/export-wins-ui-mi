@@ -1,5 +1,7 @@
 const transform = require( '../../../../../app/lib/transformers/hvc-group' );
-const hvcGroupInput = require( '../../../../../data/stubs/backend/hvc_groups/group' );
+const getBackendStub = require( '../../../helpers/get-backend-stub' );
+
+const hvcGroupInput = getBackendStub( '/hvc_groups/group' );
 
 describe( 'HVC Group transformer', function(){
 

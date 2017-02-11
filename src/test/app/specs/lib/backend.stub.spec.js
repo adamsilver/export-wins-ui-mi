@@ -1,3 +1,12 @@
+if( process.env.HAS_STUBS === true ){
+
+	console.log( 'Have stubs, running extra tests' );
+
+} else {
+
+	return;
+}
+
 const proxyquire = require( 'proxyquire' );
 const backendStub = proxyquire( '../../../../app/lib/backend.stub', {
 	'../config':  { backend: { stub: true, fake: false } }

@@ -1,4 +1,3 @@
-
 const dataset = require( '../../../../../app/lib/data-sets/target-progress' );
 
 const input = {
@@ -61,7 +60,7 @@ const input5 = {
 			}
 		}
 	}
-}
+};
 
 describe( 'Target progress data set', function(){
 

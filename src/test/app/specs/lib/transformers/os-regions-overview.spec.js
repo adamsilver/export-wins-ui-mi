@@ -1,6 +1,7 @@
-
 const transform = require( '../../../../../app/lib/transformers/os-regions-overview' );
-const input = require( '../../../../../data/stubs/backend/os_regions/overview' );
+const getBackendStub = require( '../../../helpers/get-backend-stub' );
+
+const input = getBackendStub( '/os_regions/overview' );
 
 describe( 'Overseas Regions Overview transformer', function(){
 

@@ -1,8 +1,10 @@
 const transform = require( '../../../../../app/lib/transformers/months' );
-const input = require( '../../../../../data/stubs/backend/sector_teams/months' );
-const hvcGroupInput = require( '../../../../../data/stubs/backend/hvc_groups/group_months' );
-const inputOverTarget = require( '../../../../../data/stubs/backend/sector_teams/months-over-target' );
-const input20161212 = require( '../../../../../data/stubs/backend/sector_teams/months' );
+const getBackendStub = require( '../../../helpers/get-backend-stub' );
+
+const input = getBackendStub( '/sector_teams/months' );
+const hvcGroupInput = getBackendStub( '/hvc_groups/group_months' );
+const inputOverTarget = '';//getBackendStub( '/sector_teams/months-over-target' );
+const input20161212 = getBackendStub( '/sector_teams/months' );
 
 
 describe( 'Sector months transformer', function(){
