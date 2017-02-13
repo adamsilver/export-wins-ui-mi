@@ -15,12 +15,6 @@ const transformOverseasRegionsOverview = require( '../transformers/os-regions-ov
 const transformHvcGroup = require( '../transformers/hvc-group' );
 
 
-if( USE_STUBS ){
-
-	logger.warn( 'Using stubs for backend service' );
-}
-
-
 function get( alice, path, transform ){
 
 	return new Promise( ( resolve, reject ) => {
@@ -42,10 +36,21 @@ function get( alice, path, transform ){
 
 					if( transform ){
 						
-						data = transform( data );
-					}
+						try {
 
-					resolve( data );
+							data = transform( data );
+							resolve( data );
+
+						} catch ( e ){
+
+							logger.error( 'Unable to transform API response for url: %s', response.request.uri.path );
+							reject( new Error( 'Unable to transform API response' ) );
+						}
+
+					} else {
+
+						resolve( data );						
+					}
 
 				} else {
 

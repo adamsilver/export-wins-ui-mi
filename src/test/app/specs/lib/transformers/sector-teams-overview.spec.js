@@ -49,7 +49,7 @@ describe( 'Sector teams overview transformer', function(){
 				expect( hvcGroup.value.percentage ).toBeDefined();
 				expect( hvcGroup.value.current ).toBeDefined();
 				expect( hvcGroup.value.target ).toBeDefined();
-				expect( hvcGroup.hvcConfirmedPercent ).toBeDefined();
+				expect( hvcGroup.hvcConfirmedPercent ).not.toBeDefined();
 			}
 		}
 	} );

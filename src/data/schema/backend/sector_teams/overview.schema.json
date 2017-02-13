@@ -45,7 +45,7 @@
 				"minItems": 1,
 				"items": {
 					"type": "object",
-					"required": [ "name", "hvc_performance", "hvc_target_values", "confirmed_percent", "id" ],
+					"required": [ "name", "hvc_performance", "hvc_target_values", "id" ],
 					"properties": {
 						"name": {
 							"type": "string",
@@ -56,24 +56,6 @@
 						},
 						"hvc_target_values": {
 							"$ref": "#/definitions/target-values2"
-						},
-						"confirmed_percent": {
-							"type": "object",
-							"required": [ "hvc", "non_hvc" ],
-							"properties": {
-								"hvc": {
-									"type": "number",
-									"faker": {
-										"random.number": [ 100 ]
-									}
-								},
-								"non_hvc": {
-									"type": "number",
-									"faker": {
-										"random.number": [ 100 ]
-									}
-								}
-							}
 						},
 						"id": {
 							"type": "number",

@@ -19,10 +19,6 @@
                "current": 7819,
                "target": 11013
             },
-            "confirmed_percent": {
-               "hvc": 98,
-               "non_hvc": 2
-            },
             "id": 25487
          },
          {
@@ -36,10 +32,6 @@
                "target_percentage": 22,
                "current": 83007,
                "target": 377305
-            },
-            "confirmed_percent": {
-               "hvc": 14,
-               "non_hvc": 86
             },
             "id": 67186
          },
@@ -55,10 +47,6 @@
                "current": 2110,
                "target": 2425
             },
-            "confirmed_percent": {
-               "hvc": 46,
-               "non_hvc": 54
-            },
             "id": 26352
          },
          {
@@ -72,10 +60,6 @@
                "target_percentage": 87,
                "current": 19102,
                "target": 21956
-            },
-            "confirmed_percent": {
-               "hvc": 42,
-               "non_hvc": 58
             },
             "id": 18630
          }
@@ -111,10 +95,6 @@
                "current": 66348,
                "target": 1326960
             },
-            "confirmed_percent": {
-               "hvc": 73,
-               "non_hvc": 27
-            },
             "id": 73850
          },
          {
@@ -128,10 +108,6 @@
                "target_percentage": 71,
                "current": 29012,
                "target": 40862
-            },
-            "confirmed_percent": {
-               "hvc": 10,
-               "non_hvc": 90
             },
             "id": 31325
          },
@@ -147,10 +123,6 @@
                "current": 37130,
                "target": 40359
             },
-            "confirmed_percent": {
-               "hvc": 63,
-               "non_hvc": 37
-            },
             "id": 13361
          },
          {
@@ -165,10 +137,6 @@
                "current": 42260,
                "target": 103073
             },
-            "confirmed_percent": {
-               "hvc": 91,
-               "non_hvc": 9
-            },
             "id": 4575
          },
          {
@@ -182,10 +150,6 @@
                "target_percentage": 66,
                "current": 69683,
                "target": 105580
-            },
-            "confirmed_percent": {
-               "hvc": 0,
-               "non_hvc": 100
             },
             "id": 4288
          }
@@ -221,10 +185,6 @@
                "current": 48328,
                "target": 48816
             },
-            "confirmed_percent": {
-               "hvc": 84,
-               "non_hvc": 16
-            },
             "id": 28303
          },
          {
@@ -238,10 +198,6 @@
                "target_percentage": 10,
                "current": 78623,
                "target": 786230
-            },
-            "confirmed_percent": {
-               "hvc": 28,
-               "non_hvc": 72
             },
             "id": 65351
          },
@@ -257,10 +213,6 @@
                "current": 85066,
                "target": 218118
             },
-            "confirmed_percent": {
-               "hvc": 41,
-               "non_hvc": 59
-            },
             "id": 94300
          },
          {
@@ -274,10 +226,6 @@
                "target_percentage": 69,
                "current": 43849,
                "target": 63549
-            },
-            "confirmed_percent": {
-               "hvc": 9,
-               "non_hvc": 91
             },
             "id": 74465
          }
@@ -312,10 +260,6 @@
                "current": 97703,
                "target": 132031
             },
-            "confirmed_percent": {
-               "hvc": 10,
-               "non_hvc": 90
-            },
             "id": 5424
          },
          {
@@ -329,10 +273,6 @@
                "target_percentage": 62,
                "current": 61433,
                "target": 99085
-            },
-            "confirmed_percent": {
-               "hvc": 43,
-               "non_hvc": 57
             },
             "id": 70052
          }
@@ -367,10 +307,6 @@
                "current": 93054,
                "target": 443114
             },
-            "confirmed_percent": {
-               "hvc": 86,
-               "non_hvc": 14
-            },
             "id": 50985
          },
          {
@@ -384,10 +320,6 @@
                "target_percentage": 50,
                "current": 93296,
                "target": 186592
-            },
-            "confirmed_percent": {
-               "hvc": 55,
-               "non_hvc": 45
             },
             "id": 30448
          },
@@ -403,10 +335,6 @@
                "current": 67457,
                "target": 69543
             },
-            "confirmed_percent": {
-               "hvc": 54,
-               "non_hvc": 46
-            },
             "id": 19028
          },
          {
@@ -420,10 +348,6 @@
                "target_percentage": 58,
                "current": 71611,
                "target": 123467
-            },
-            "confirmed_percent": {
-               "hvc": 79,
-               "non_hvc": 21
             },
             "id": 91853
          }

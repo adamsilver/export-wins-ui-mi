@@ -3,16 +3,13 @@ const logger = require( './logger' );
 
 let stubPath = '../../data/stubs/backend/';
 
+logger.warn( 'Using stubs for backend' );
+
 if( config.backend.fake ){
 
 	logger.warn( 'Using fake stubs for backend' );
 
 	stubPath = '../../data/fake-stubs/backend/';
-}
-
-function getStub( path ){
-
-	return require( stubPath + path );
 }
 
 const response = { statusCode: 200, isSuccess: true, elapsedTime: 0 };
@@ -51,7 +48,7 @@ module.exports = {
 
 			if( path.test( url ) ){
 
-				data = getStub( stub );
+				data = require( stubPath + stub );
 				break;
 			}
 		}

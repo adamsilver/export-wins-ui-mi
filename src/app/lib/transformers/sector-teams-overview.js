@@ -44,7 +44,7 @@ function getImage( team ){
 
 function mapValues( sector ){
 
-	return {
+	let r = {
 		id: sector.id,
 		name: sector.name,
 		hvcPerformance: {
@@ -56,9 +56,15 @@ function mapValues( sector ){
 			current: sector.hvc_target_values.current,
 			target: sector.hvc_target_values.target,
 			percentage: Math.min( sector.hvc_target_values.target_percentage, 100 )
-		},
-		hvcConfirmedPercent: sector.confirmed_percent.hvc
+		}
 	};
+
+	if( sector.confirmed_percent ){
+
+		r.hvcConfirmedPercent = sector.confirmed_percent.hvc;
+	}
+
+	return r;
 }
 
 module.exports = function( teams ){
