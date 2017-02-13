@@ -61,7 +61,7 @@ function mapValues( sector ){
 
 	if( sector.confirmed_percent ){
 
-		r.hvcConfirmedPercent = sector.confirmed_percent.hvc;
+		r.hvcConfirmedPercent = sector.confirmed_percent;
 	}
 
 	return r;
