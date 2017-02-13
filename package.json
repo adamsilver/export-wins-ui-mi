@@ -80,7 +80,6 @@
     "karma-chrome-launcher": "*",
     "karma-jasmine": "*",
     "load-grunt-tasks": "*",
-    "nock": "9.0.5",
     "node-sass": "4.3.0",
     "nodemon": "*",
     "npm-run-all": "3.1.2",
