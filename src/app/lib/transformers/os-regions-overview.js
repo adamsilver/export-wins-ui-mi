@@ -102,7 +102,10 @@ module.exports = function( input ){
 						target: region.hvc_target_values.target,
 						percentage: Math.min( Math.round( region.hvc_target_values.target_percentage ), 100 )
 					},
-					hvcConfirmedPercent: region.confirmed_percent.hvc,
+					confirmedPercent: {
+						hvc: region.confirmed_percent.hvc,
+						nonHvc: region.confirmed_percent.non_hvc
+					},
 					hvcPerformance: {
 						red: ( region.hvc_performance.red || 0 ),
 						amber: ( region.hvc_performance.amber || 0 ),

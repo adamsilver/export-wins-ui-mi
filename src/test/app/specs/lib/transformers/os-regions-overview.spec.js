@@ -42,7 +42,8 @@ describe( 'Overseas Regions Overview transformer', function(){
 					expect( region.value.current ).toBeDefined();
 					expect( region.value.target ).toBeDefined();
 					expect( region.value.percentage ).toBeDefined();
-					expect( region.hvcConfirmedPercent ).toBeDefined();
+					expect( region.confirmedPercent.hvc ).toBeDefined();
+					expect( region.confirmedPercent.nonHvc ).toBeDefined();
 					expect( region.hvcPerformance.red ).toBeDefined();
 					expect( region.hvcPerformance.amber ).toBeDefined();
 					expect( region.hvcPerformance.green ).toBeDefined();
@@ -58,8 +59,8 @@ describe( 'Overseas Regions Overview transformer', function(){
 
 		it( 'Should return whole numbers for the percentages', function(){
 
-			expect( output[ 0 ].regions[ 0 ].hvcConfirmedPercent ).toEqual( 13 );
-			expect( output[ 1 ].regions[ 0 ].hvcConfirmedPercent ).toEqual( 16 );
+			expect( output[ 0 ].regions[ 0 ].confirmedPercent.hvc ).toEqual( 13 );
+			expect( output[ 1 ].regions[ 0 ].confirmedPercent.hvc ).toEqual( 16 );
 		} );
 
 	} );

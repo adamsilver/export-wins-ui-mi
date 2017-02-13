@@ -21,9 +21,9 @@
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--current-value">{{ currentValue( sector.value ) }}</td>
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--target-value">&pound;{{ sector.value.target | largeNumber }}</td>
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--value-percentage"><span class="visually-hidden">{{ sector.value.percentage }}%</span></td>
-		{% if sector.hvcConfirmedPercent -%}
+		{% if sector.confirmedPercent -%}
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--hvc-non-hvc">
-			<div class="pie pie--center" style="animation-delay: -{{ sector.hvcConfirmedPercent.hvc }}s">{{ sector.hvcConfirmedPercent.hvc }}%</div>
+			<div class="pie pie--center" style="animation-delay: -{{ sector.confirmedPercent.hvc }}s">{{ sector.confirmedPercent.hvc }}%</div>
 		</td>
 		{%- endif -%}
 	</tr>

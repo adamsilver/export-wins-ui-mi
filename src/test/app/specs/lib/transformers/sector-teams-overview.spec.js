@@ -33,7 +33,8 @@ describe( 'Sector teams overview transformer', function(){
 			expect( team.value.percentage ).toBeDefined();
 			expect( team.value.current ).toBeDefined();
 			expect( team.value.target ).toBeDefined();
-			expect( team.hvcConfirmedPercent ).toBeDefined();
+			expect( team.confirmedPercent.hvc ).toBeDefined();
+			expect( team.confirmedPercent.nonHvc ).toBeDefined();
 		}
 	} );
 
@@ -49,7 +50,7 @@ describe( 'Sector teams overview transformer', function(){
 				expect( hvcGroup.value.percentage ).toBeDefined();
 				expect( hvcGroup.value.current ).toBeDefined();
 				expect( hvcGroup.value.target ).toBeDefined();
-				expect( hvcGroup.hvcConfirmedPercent ).not.toBeDefined();
+				expect( hvcGroup.confirmedPercent ).not.toBeDefined();
 			}
 		}
 	} );
