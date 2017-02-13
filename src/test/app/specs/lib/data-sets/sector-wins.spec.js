@@ -1,31 +1,34 @@
 
 const dataset = require( '../../../../../app/lib/data-sets/sector-wins' );
+const getBackendStub = require( '../../../helpers/get-backend-stub' );
 
 const input = {
 	"hvcs": { "target": 165000000 },
 	"wins": {
-		"hvc": {
-			"number": {
-				"non_confirmed": 49,
-				"confirmed": 21,
-				"total": 70
+		"export": {
+			"hvc": {
+				"number": {
+					"unconfirmed": 49,
+					"confirmed": 21,
+					"total": 70
+				},
+				"value": {
+					"unconfirmed": 4900000,
+					"confirmed": 2100000,
+					"total": 7000000
+				}
 			},
-			"value": {
-				"non_confirmed": 4900000,
-				"confirmed": 2100000,
-				"total": 7000000
-			}
-		},
-		"non_hvc": {
-			"number": {
-				"non_confirmed": 59,
-				"confirmed": 41,
-				"total": 100
-			},
-			"value": {
-				"non_confirmed": 5900000,
-				"confirmed": 4100000,
-				"total": 10000000
+			"non_hvc": {
+				"number": {
+					"unconfirmed": 59,
+					"confirmed": 41,
+					"total": 100
+				},
+				"value": {
+					"unconfirmed": 5900000,
+					"confirmed": 4100000,
+					"total": 10000000
+				}
 			}
 		}
 	},
@@ -35,16 +38,18 @@ const input = {
 const inputHvcGroup = {
 	"hvcs": { "target": 165000000 },
 	"wins": {
-		"hvc": {
-			"number": {
-				"non_confirmed": 49,
-				"confirmed": 21,
-				"total": 70
-			},
-			"value": {
-				"non_confirmed": 4900000,
-				"confirmed": 2100000,
-				"total": 7000000
+		"export": {
+			"hvc": {
+				"number": {
+					"unconfirmed": 49,
+					"confirmed": 21,
+					"total": 70
+				},
+				"value": {
+					"unconfirmed": 4900000,
+					"confirmed": 2100000,
+					"total": 7000000
+				}
 			}
 		}
 	},
@@ -83,4 +88,17 @@ describe( 'Sector wins data data set', function(){
 		} );
 	} );
 
+	describe( 'Using a stub', function(){
+	
+		it( 'Shoud not throw an error', function(){
+	
+			function createDatSet(){
+
+				const stub = getBackendStub( '/sector_teams/sector_team' );
+				dataset.create( stub );
+			}
+
+			expect( createDatSet ).not.toThrow();
+		} );
+	} );
 } );

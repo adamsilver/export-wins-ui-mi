@@ -1,5 +1,8 @@
 {
    "name": "quis dolor ullam",
+   "hvcs": {
+      "target": 1000000000
+   },
    "months": [
       {
          "date": "2016-6",

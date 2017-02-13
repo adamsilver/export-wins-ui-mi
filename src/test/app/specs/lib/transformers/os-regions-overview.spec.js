@@ -42,10 +42,10 @@ describe( 'Overseas Regions Overview transformer', function(){
 					expect( region.value.current ).toBeDefined();
 					expect( region.value.target ).toBeDefined();
 					expect( region.value.percentage ).toBeDefined();
-					expect( region.hvcVsNonhvcPercentage ).toBeDefined();
-					expect( region.hvcColours.red ).toBeDefined();
-					expect( region.hvcColours.amber ).toBeDefined();
-					expect( region.hvcColours.green ).toBeDefined();
+					expect( region.hvcConfirmedPercent ).toBeDefined();
+					expect( region.hvcPerformance.red ).toBeDefined();
+					expect( region.hvcPerformance.amber ).toBeDefined();
+					expect( region.hvcPerformance.green ).toBeDefined();
 				} );
 			} );
 		} );
@@ -58,8 +58,8 @@ describe( 'Overseas Regions Overview transformer', function(){
 
 		it( 'Should return whole numbers for the percentages', function(){
 
-			expect( output[ 0 ].regions[ 0 ].hvcVsNonhvcPercentage ).toEqual( 49 );
-			expect( output[ 1 ].regions[ 0 ].hvcVsNonhvcPercentage ).toEqual( 38 );
+			expect( output[ 0 ].regions[ 0 ].hvcConfirmedPercent ).toEqual( 13 );
+			expect( output[ 1 ].regions[ 0 ].hvcConfirmedPercent ).toEqual( 16 );
 		} );
 
 	} );

@@ -1,6 +1,7 @@
 const path = require( 'path' );
 const writeJsonFiles = require( './faker/helpers/write-json-files' );
 
+const hvcGroupsJson = require( './faker/backend/scripts/hvc-groups-json' );
 const osRegionsJson = require( './faker/backend/scripts/os-regions-json' );
 const sectorTeamsJson = require( './faker/backend/scripts/sector-teams-json' );
 const sharedJson = require( './faker/backend/scripts/shared-json' );
@@ -11,8 +12,8 @@ const jsonFiles = {
 
 	'hvc_groups/index': sharedJson.createIndex(),
 	'hvc_groups/group': sharedJson.createSector(),
-	'hvc_groups/group_campaigns': sharedJson.createCampaigns(),
-	'hvc_groups/group_months': sharedJson.createMonths(),
+	'hvc_groups/campaigns': sharedJson.createCampaigns(),
+	'hvc_groups/months': hvcGroupsJson.createMonths(),
 
 	'os_regions/overview': osRegionsJson.createOverview(),
 	'os_regions/campaigns': sharedJson.createCampaigns(),

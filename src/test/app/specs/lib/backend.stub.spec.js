@@ -28,8 +28,8 @@ const overseasRegionsOverviewStub = require( '../../../../data/stubs/backend/os_
 
 const hvcGroupsStub = require( '../../../../data/stubs/backend/hvc_groups' );
 const hvcGroupStub = require( '../../../../data/stubs/backend/hvc_groups/group' );
-const hvcGroupCampaignsStub = require( '../../../../data/stubs/backend/hvc_groups/group_campaigns' );
-const hvcGroupMonthsStub = require( '../../../../data/stubs/backend/hvc_groups/group_months' );
+const hvcGroupCampaignsStub = require( '../../../../data/stubs/backend/hvc_groups/campaigns' );
+const hvcGroupMonthsStub = require( '../../../../data/stubs/backend/hvc_groups/months' );
 
 
 describe( 'Backend stub', function(){

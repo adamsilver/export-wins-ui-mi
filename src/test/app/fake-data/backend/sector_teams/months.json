@@ -1,5 +1,8 @@
 {
    "name": "aut cumque maxime",
+   "hvcs": {
+      "target": 60000000
+   },
    "months": [
       {
          "date": "2016-6",

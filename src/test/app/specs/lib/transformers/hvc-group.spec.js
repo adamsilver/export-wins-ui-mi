@@ -16,7 +16,7 @@ describe( 'HVC Group transformer', function(){
 	
 		it( 'Should calculate the total confirmed', function(){
 		
-			expect( output.exportValue ).toEqual( 6247000 );
+			expect( output.exportValue ).toEqual( 59481 );
 		} );
 	} );
 } );

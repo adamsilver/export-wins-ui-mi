@@ -35,8 +35,8 @@ const stubs = [
 
 	[ /^\/mi\/hvc_groups\/$/, 'hvc_groups'  ],
 	[ /^\/mi\/hvc_groups\/[0-9]+\/$/, 'hvc_groups/group'  ],
-	[ /^\/mi\/hvc_groups\/[0-9]+\/campaigns\/$/, 'hvc_groups/group_campaigns'  ],
-	[ /^\/mi\/hvc_groups\/[0-9]+\/months\/$/, 'hvc_groups/group_months' ]
+	[ /^\/mi\/hvc_groups\/[0-9]+\/campaigns\/$/, 'hvc_groups/campaigns'  ],
+	[ /^\/mi\/hvc_groups\/[0-9]+\/months\/$/, 'hvc_groups/months' ]
 ];
 
 module.exports = {

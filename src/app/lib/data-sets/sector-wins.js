@@ -4,12 +4,12 @@ function combineData( data1, data2 ){
 	return {
 		number: {
 			confirmed: ( data1.number.confirmed + data2.number.confirmed ),
-			non_confirmed: ( data1.number.non_confirmed + data2.number.non_confirmed ),
+			unconfirmed: ( data1.number.unconfirmed + data2.number.unconfirmed ),
 			total: ( data1.number.total + data2.number.total )
 		},
 		value: {
 			confirmed: ( data1.value.confirmed + data2.value.confirmed ),
-			non_confirmed: ( data1.value.non_confirmed + data2.value.non_confirmed ),
+			unconfirmed: ( data1.value.unconfirmed + data2.value.unconfirmed ),
 			total: ( data1.value.total + data2.value.total )
 		}
 	};
@@ -22,7 +22,7 @@ function createConfirmedUnconfirmedData( data ){
 
 	return {
 		confirmed: Math.round( parts * data.value.confirmed ),
-		unconfirmed: Math.round( parts * data.value.non_confirmed )
+		unconfirmed: Math.round( parts * data.value.unconfirmed )
 	};
 }
 
@@ -41,19 +41,19 @@ module.exports = {
 
 	create: function( data ){
 
-		if( data.wins.non_hvc ){
+		if( data.wins.export.non_hvc ){
 
-			const combinedData = combineData( data.wins.hvc, data.wins.non_hvc );
+			const combinedData = combineData( data.wins.export.hvc, data.wins.export.non_hvc );
 
 			return {
-				hvcNonHvcValue: createHvcNonHvcData( data.wins.hvc, data.wins.non_hvc ),
+				hvcNonHvcValue: createHvcNonHvcData( data.wins.export.hvc, data.wins.export.non_hvc ),
 				confirmedUnconfirmedValue: createConfirmedUnconfirmedData( combinedData )
 			};
 		
 		} else {
 
 			return {
-				confirmedUnconfirmedValue: createConfirmedUnconfirmedData( data.wins.hvc )
+				confirmedUnconfirmedValue: createConfirmedUnconfirmedData( data.wins.export.hvc )
 			};		
 		}
 	}

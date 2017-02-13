@@ -3,11 +3,21 @@
 	"title": "months",
 
 	"type": "object",
-	"required": [ "name", "months" ],
+	"required": [ "name", "hvcs", "months" ],
 	"properties": {
 		"name": {
 			"type": "string",
 			"faker": "lorem.words"
+		},
+		"hvcs": {
+			"type": "object",
+			"required": [ "target" ],
+			"properties": {
+				"target": {
+					"type": "number",
+					"faker": "random.number"
+				}
+			}
 		},
 		"months": {
 			"type": "array",

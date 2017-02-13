@@ -111,13 +111,13 @@
 									"confirmed_percent": {
 										"type": "number",
 										"faker": {
-											"finance.amount": [ 0, 100, 2 ]
+											"finance.amount": [ 0, 100 ]
 										}
 									},
 									"unconfirmed_percent": {
 										"type": "number",
 										"faker": {
-											"finance.amount": [ 0, 100, 2 ]
+											"finance.amount": [ 0, 100 ]
 										}
 									},
 									"status": {

@@ -2,7 +2,7 @@ const transform = require( '../../../../../app/lib/transformers/campaigns' );
 const getBackendStub = require( '../../../helpers/get-backend-stub' );
 
 const sectorTeamCampaigns = getBackendStub( '/sector_teams/campaigns' );
-const hvcGroupCampaigns = getBackendStub( '/hvc_groups/group_campaigns' );
+const hvcGroupCampaigns = getBackendStub( '/hvc_groups/campaigns' );
 const osRegionCampaigns = getBackendStub( '/os_regions/campaigns' );
 
 describe( 'Sector campaigns transformer', function(){

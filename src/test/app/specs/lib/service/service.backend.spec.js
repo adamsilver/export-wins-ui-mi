@@ -219,7 +219,7 @@ describe( 'Backend service', function(){
 	
 		it( 'Should use the campaigns transformer', function( done ){
 
-			returnStub( '/hvc_groups/group_campaigns' );
+			returnStub( '/hvc_groups/campaigns' );
 	
 			backendService.getHvcGroupCampaigns( alice, '3' ).then( () => {
 
@@ -234,7 +234,7 @@ describe( 'Backend service', function(){
 	
 		it( 'Should use the months transformer', function( done ){
 
-			returnStub( '/hvc_groups/group_months' );
+			returnStub( '/hvc_groups/months' );
 	
 			backendService.getHvcGroupMonths( alice, '3' ).then( () => {
 

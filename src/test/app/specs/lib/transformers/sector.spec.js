@@ -17,7 +17,7 @@ describe( 'Sector transformer', function(){
 	
 		it( 'Should calculate the total confirmed', function(){
 		
-			expect( output.exportValue ).toEqual( 228975262 );
+			expect( output.exportValue ).toEqual( 130082 );
 		} );
 	} );
 
@@ -30,7 +30,7 @@ describe( 'Sector transformer', function(){
 	
 		it( 'Should calculate the total confirmed', function(){
 		
-			expect( output.exportValue ).toEqual( 280236070 );
+			expect( output.exportValue ).toEqual( 56203 );
 		} );
 	} );
 } );

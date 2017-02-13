@@ -47,17 +47,17 @@ function mapValues( sector ){
 	return {
 		id: sector.id,
 		name: sector.name,
-		hvcColours: {
-			red: ( sector.hvc_colours.red || 0 ),
-			amber: ( sector.hvc_colours.amber || 0 ),
-			green: ( sector.hvc_colours.green || 0 )
+		hvcPerformance: {
+			red: ( sector.hvc_performance.red || 0 ),
+			amber: ( sector.hvc_performance.amber || 0 ),
+			green: ( sector.hvc_performance.green || 0 )
 		},
 		value: {
 			current: sector.hvc_target_values.current,
 			target: sector.hvc_target_values.target,
-			percentage: Math.min( Math.round( sector.hvc_target_values.target_percentage ), 100 )
+			percentage: Math.min( sector.hvc_target_values.target_percentage, 100 )
 		},
-		hvcVsNonhvcPercentage: Math.round( sector.hvc_vs_non_hvc_percentage )
+		hvcConfirmedPercent: sector.confirmed_percent.hvc
 	};
 }
 
@@ -68,7 +68,7 @@ module.exports = function( teams ){
 		let mappedTeam = mapValues( team );
 
 		mappedTeam.image = getImage( team );
-		mappedTeam.hvcGroups = team.parent_sectors.map( mapValues );
+		mappedTeam.hvcGroups = team.hvc_groups.map( mapValues );
 
 		return mappedTeam;
 	} );
