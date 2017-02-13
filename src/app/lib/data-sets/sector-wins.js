@@ -21,8 +21,8 @@ function createConfirmedUnconfirmedData( data ){
 	const parts = ( 100 / data.value.total );
 
 	return {
-		confirmed: Math.round( parts * data.value.confirmed ),
-		unconfirmed: Math.round( parts * data.value.unconfirmed )
+		confirmed: ( data.value.confirmed ? Math.round( parts * data.value.confirmed ) : 0 ),
+		unconfirmed: (  data.value.unconfirmed ? Math.round( parts * data.value.unconfirmed ) : 0 )
 	};
 }
 

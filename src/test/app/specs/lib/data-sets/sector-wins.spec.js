@@ -88,6 +88,18 @@ describe( 'Sector wins data data set', function(){
 		} );
 	} );
 
+	describe( 'Zero values', function(){
+	
+		it( 'Should return values', function(){
+	
+			const zeroHvcGroup = getBackendStub( '/hvc_groups/group_zero-values' );
+			const output = dataset.create( zeroHvcGroup );
+
+			expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 0 );
+			expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 0 );
+		} );
+	} );
+
 	describe( 'Using a stub', function(){
 	
 		it( 'Shoud not throw an error', function(){
