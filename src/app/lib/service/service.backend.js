@@ -135,14 +135,14 @@ function getOverseasRegionMonths( alice, regionId ){
 	return get( alice, `/mi/os_regions/${ regionId }/months/`, transformMonths );
 }
 
-function getOverseasRegionTopNonHvc( alice, regionId ){
-
-	return get( alice, `/mi/os_regions/${ regionId }/top_non_hvcs/` );
-}
-
 function getOverseasRegionCampaigns( alice, regionId ){
 
 	return get( alice, `/mi/os_regions/${ regionId }/campaigns/`, transformCampaigns );
+}
+
+function getOverseasRegionTopNonHvc( alice, regionId ){
+
+	return get( alice, `/mi/os_regions/${ regionId }/top_non_hvcs/` );
 }
 
 function getOverseasRegionsOverview( alice ){
