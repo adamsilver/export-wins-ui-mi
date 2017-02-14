@@ -1,6 +1,7 @@
 const proxyquire = require( 'proxyquire' );
 const backendService = require( '../../../../app/lib/service/service.backend' );
 const errorHandler = require( '../../../../app/lib/render-error' );
+const interceptBackend = require( '../../helpers/intercept-backend' );
 
 let controller;
 
@@ -26,6 +27,8 @@ describe( 'Overseas Regions controller', function(){
 			spyOn( backendService, 'getSectorTeamsOverview' ).and.callThrough();
 			spyOn( errorHandler, 'handler' ).and.callThrough();
 
+			interceptBackend.get( '/mi/sector_teams/overview/', 200, '/sector_teams/overview' );
+
 			controller.overview( req, { render: function( view, data ){
 
 				expect( backendService.getSectorTeamsOverview ).toHaveBeenCalledWith( req.alice );
@@ -40,13 +43,15 @@ describe( 'Overseas Regions controller', function(){
 	describe( 'List', function(){
 	
 		it( 'Should get the list data and render the correct view', function( done ){
+			
+			const req = {
+				alice: '87654'
+			};
 		
 			spyOn( backendService, 'getSectorTeams' ).and.callThrough();
 			spyOn( errorHandler, 'handler' ).and.callThrough();
 
-			const req = {
-				alice: '87654'
-			};
+			interceptBackend.get( '/mi/sector_teams/', 200, '/sector_teams/' );
 
 			controller.list( req, { render: function( view, data ){
 
@@ -63,9 +68,6 @@ describe( 'Overseas Regions controller', function(){
 	
 		it( 'Should get the team data and render the correct view', function( done ){
 	
-			spyOn( backendService, 'getSectorTeamInfo' ).and.callThrough();
-			spyOn( errorHandler, 'handler' ).and.callThrough();
-
 			const req = {
 				alice: '1234',
 				params: {
@@ -73,9 +75,19 @@ describe( 'Overseas Regions controller', function(){
 				}
 			};
 
+			const teamId = req.params.id;
+
+			spyOn( backendService, 'getSectorTeamInfo' ).and.callThrough();
+			spyOn( errorHandler, 'handler' ).and.callThrough();
+
+			interceptBackend.get( `/mi/sector_teams/${ teamId }/`, 200, '/sector_teams/sector_team' );
+			interceptBackend.get( `/mi/sector_teams/${ teamId }/months/`, 200, '/sector_teams/months' );
+			interceptBackend.get( `/mi/sector_teams/${ teamId }/campaigns/`, 200, '/sector_teams/campaigns' );
+			interceptBackend.get( `/mi/sector_teams/${ teamId }/top_non_hvcs/`, 200, '/sector_teams/top_non_hvcs' );
+
 			controller.team( req, { render: function( view, data ){
 
-				expect( backendService.getSectorTeamInfo ).toHaveBeenCalledWith( req.alice, req.params.id );
+				expect( backendService.getSectorTeamInfo ).toHaveBeenCalledWith( req.alice, teamId );
 				expect( view ).toEqual( 'sector-teams/detail.html' );
 				expect( data.sectorName ).toBeDefined();
 				expect( data.winSummary ).toBeDefined();

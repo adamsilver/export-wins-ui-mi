@@ -1,6 +1,7 @@
 const proxyquire = require( 'proxyquire' );
 const backendService = require( '../../../../app/lib/service/service.backend' );
 const errorHandler = require( '../../../../app/lib/render-error' );
+const interceptBackend = require( '../../helpers/intercept-backend' );
 
 let controller;
 
@@ -20,12 +21,15 @@ describe( 'Overseas Regions controller', function(){
 	
 		it( 'Should get the data and render the correct view', function( done ){
 		
-			spyOn( backendService, 'getSectorTeamsAndOverseasRegions' ).and.callThrough();
-			spyOn( errorHandler, 'handler' ).and.callThrough();
-
 			const req = {
 				alice: '87654'
 			};
+
+			spyOn( backendService, 'getSectorTeamsAndOverseasRegions' ).and.callThrough();
+			spyOn( errorHandler, 'handler' ).and.callThrough();
+
+			interceptBackend.get( '/mi/sector_teams/', 200, '/sector_teams/' );
+			interceptBackend.get( '/mi/os_regions/', 200, '/os_regions/' );
 
 			controller( req, { render: function( view, data ){
 
