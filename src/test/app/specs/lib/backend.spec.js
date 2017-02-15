@@ -1,0 +1,195 @@
+const proxyquire = require( 'proxyquire' );
+
+let request;
+let raven;
+let logger;
+let createSignature;
+let backend;
+
+const timeout = 10;
+const href = 'testing.local';
+const path = '/test';
+const alice ={ session: 'alice-session' };
+
+function createBackend( opts = {} ){
+
+	backend = proxyquire( '../../../../app/lib/backend', {
+		'request': opts.request || request,
+		'raven': opts.raven || raven,
+		'./logger': opts.logger || logger,
+		'./create-signature': opts.createSignature || createSignature,
+		'../config':  opts.config || { backend: { stub: true, fake: false, href, timeout } }
+	} );
+}
+
+describe( 'Backend lib', function(){
+
+	beforeEach( function(){
+	
+		raven = {
+			captureMessage: jasmine.createSpy( 'raven.captureMessage' ) 
+		};
+
+		logger = {
+			warn: jasmine.createSpy( 'logger.warn' ),
+			error: jasmine.createSpy( 'logger.error' ),
+			debug: jasmine.createSpy( 'logger.debug' )
+		};
+
+		request = jasmine.createSpy( 'request' );
+		createSignature = jasmine.createSpy( 'createSignature' ).and.callFake( function(){ return 'test-hash'; } );
+
+		createBackend();
+	} );
+
+	describe( 'GET request', function(){
+
+		it( 'Should call request with the correct options', function( done ){
+		
+			request.and.callFake( function( opts, cb ){
+				cb( null, {
+					statusCode: 200,
+					elapsedTime: 100,
+					headers: {
+						'content-type': 'application/json'
+					},
+					request: { uri: { href: '/test' } }
+				}, '{ "test": "testing" }' );
+			} );
+
+			backend.get( alice, path, function(){
+
+				expect( request.calls.argsFor( 0 )[ 0 ] ).toEqual( {
+					url: ( href + path ),
+					time: true,
+					method: 'GET',
+					headers: {
+						'X-Signature': 'test-hash',
+						'Cookie': ( 'sessionid=' + alice.session )
+					}
+				} );
+				done();
+			} );
+		} );
+
+		describe( 'A slow request', function(){
+
+			describe( 'When a sentry DSN is defined', function(){
+			
+				it( 'Should log an event with raven/sentry', function( done ){
+
+					createBackend( {
+						config: { sentryDsn: 'test1234', backend: { stub: true, fake: false, href, timeout } }
+					} );
+			
+					request.and.callFake( function( opts, cb ){
+						cb( null, {
+							statusCode: 200,
+							elapsedTime: 1000,
+							headers: {},
+							request: { uri: { href: '/test' } }
+						}, '{ "test": "testing" }' );
+					} );
+
+					backend.get( alice, path, function( err, response ){
+
+						expect( raven.captureMessage ).toHaveBeenCalledWith( 'Long response time from backend API', {
+							level: 'info',
+							extra: {
+								time: response.elapsedTime,
+								path: response.request.uri.path
+							}
+						} );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'When a sentry DSN is not defined', function(){
+			
+				it( 'Should log an error', function( done ){
+			
+					request.and.callFake( function( opts, cb ){
+						cb( null, {
+							statusCode: 200,
+							elapsedTime: 1000,
+							headers: {},
+							request: { uri: { href: '/test' } }
+						}, '{ "test": "testing" }' );
+					} );
+
+					backend.get( alice, path, function( err, response ){
+
+						expect( raven.captureMessage ).not.toHaveBeenCalled();
+						expect( logger.warn ).toHaveBeenCalledWith( 'Slow response from backend API. %s took %sms', response.request.uri.path, response.elapsedTime );
+						done();
+					} );
+				} );
+			} );
+		} );
+	
+		describe( 'A successful request', function(){
+
+			beforeEach( function(){
+
+				request.and.callFake( function( opts, cb ){
+					cb( null, {
+						statusCode: 200,
+						elapsedTime: 100,
+						headers: {
+							'content-type': 'application/json'
+						},
+						request: { uri: { href: '/test' } }
+					}, '{ "test": "testing" }' );
+				} );
+			} );
+		
+			describe( 'With a JSON response', function(){
+
+				describe( 'When the response is valid JSON', function(){
+				
+					it( 'Should return the response as a JSON object', function( done ){
+				
+						backend.get( alice, path, function( err, response, data ){
+
+							expect( request ).toHaveBeenCalled();
+							expect( err ).toBeNull();
+							expect( response.isSuccess ).toEqual( true );
+							expect( Object.prototype.toString.call( data ) ).toEqual( '[object Object]' );
+							expect( data ).toEqual( { test: 'testing' } );
+							done();
+						} );
+					} );
+				} );
+
+				describe( 'When the response is not valid JSON', function(){
+				
+					it( 'Should log an error and return the response data as is', function( done ){
+				
+						request.and.callFake( function( opts, cb ){
+							cb( null, {
+								statusCode: 200,
+								elapsedTime: 100,
+								headers: {
+									'content-type': 'application/json'
+								},
+								request: { uri: { href: '/test' } }
+							}, '"test": "testing"' );
+						} );
+
+						backend.get( alice, path, function( err, response, data ){
+
+							expect( request ).toHaveBeenCalled();
+							expect( err ).toBeNull();
+							expect( response.isSuccess ).toEqual( true );
+							expect( logger.error ).toHaveBeenCalledWith( 'Unable to convert response to JSON for uri: %s', response.request.uri.href );
+							expect( Object.prototype.toString.call( data ) ).toEqual( '[object String]' );
+							expect( data ).toEqual( '"test": "testing"' );
+							done();
+						} );
+					} );
+				} );
+			} );
+		} );
+	} );
+} );

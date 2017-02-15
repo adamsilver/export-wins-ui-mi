@@ -39,6 +39,6 @@ let config = {
 	}
 };
 
-config.backend.href = `${config.backend.protocol}://${config.backend.host}:${config.backend.port}/`;
+config.backend.href = `${config.backend.protocol}://${config.backend.host}:${config.backend.port}`;
 
 module.exports = config;
