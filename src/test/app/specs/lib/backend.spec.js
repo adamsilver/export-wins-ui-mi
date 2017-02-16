@@ -190,6 +190,62 @@ describe( 'Backend lib', function(){
 					} );
 				} );
 			} );
+
+			describe( 'A text/plain response', function(){
+			
+				it( 'Should return the response', function( done ){
+			
+				request.and.callFake( function( opts, cb ){
+						cb( null, {
+							statusCode: 200,
+							elapsedTime: 100,
+							headers: {
+								'content-type': 'text/plain'
+							},
+							request: { uri: { href: '/test' } }
+						}, 'test' );
+					} );
+
+					backend.get( alice, path, function( err, response, data ){
+
+						expect( request ).toHaveBeenCalled();
+						expect( err ).toBeNull();
+						expect( response.isSuccess ).toEqual( true );
+						expect( logger.error ).not.toHaveBeenCalled();
+						expect( Object.prototype.toString.call( data ) ).toEqual( '[object String]' );
+						expect( data ).toEqual( 'test' );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'A failed request', function(){
+
+			describe( 'A network timeout', function(){
+			
+				it( 'Should return the error', function( done ){
+					
+					request.and.callFake( function( opts, cb ){
+						
+						let err = new Error( 'Network failed' );
+						err.code = 'ECONNREFUSED';
+						cb( err );
+					} );
+
+					backend.get( alice, path, function( err, response, data ){
+
+						expect( request ).toHaveBeenCalled();
+						expect( err ).toBeDefined();
+						expect( err.code ).toEqual( 'ECONNREFUSED' );
+						expect( response ).toBeUndefined();
+						expect( logger.error ).not.toHaveBeenCalled();
+						expect( logger.warn ).not.toHaveBeenCalled();
+						expect( data ).toBeUndefined();
+						done();
+					} );
+				} );
+			} );
 		} );
 	} );
 } );
