@@ -4,7 +4,7 @@ const getBackendStub = require( './get-backend-stub' );
 
 module.exports = {
 
-	get: function( path, statusCode, stubPath ){
+	getStub: function( path, statusCode, stubPath ){
 
 		let data;
 

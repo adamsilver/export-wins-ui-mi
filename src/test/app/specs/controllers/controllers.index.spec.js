@@ -28,8 +28,8 @@ describe( 'Overseas Regions controller', function(){
 			spyOn( backendService, 'getSectorTeamsAndOverseasRegions' ).and.callThrough();
 			spyOn( errorHandler, 'handler' ).and.callThrough();
 
-			interceptBackend.get( '/mi/sector_teams/', 200, '/sector_teams/' );
-			interceptBackend.get( '/mi/os_regions/', 200, '/os_regions/' );
+			interceptBackend.getStub( '/mi/sector_teams/', 200, '/sector_teams/' );
+			interceptBackend.getStub( '/mi/os_regions/', 200, '/os_regions/' );
 
 			controller( req, { render: function( view, data ){
 

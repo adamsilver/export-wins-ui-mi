@@ -27,7 +27,7 @@ describe( 'Overseas Regions controller', function(){
 			spyOn( backendService, 'getSectorTeamsOverview' ).and.callThrough();
 			spyOn( errorHandler, 'handler' ).and.callThrough();
 
-			interceptBackend.get( '/mi/sector_teams/overview/', 200, '/sector_teams/overview' );
+			interceptBackend.getStub( '/mi/sector_teams/overview/', 200, '/sector_teams/overview' );
 
 			controller.overview( req, { render: function( view, data ){
 
@@ -51,7 +51,7 @@ describe( 'Overseas Regions controller', function(){
 			spyOn( backendService, 'getSectorTeams' ).and.callThrough();
 			spyOn( errorHandler, 'handler' ).and.callThrough();
 
-			interceptBackend.get( '/mi/sector_teams/', 200, '/sector_teams/' );
+			interceptBackend.getStub( '/mi/sector_teams/', 200, '/sector_teams/' );
 
 			controller.list( req, { render: function( view, data ){
 
@@ -80,10 +80,10 @@ describe( 'Overseas Regions controller', function(){
 			spyOn( backendService, 'getSectorTeamInfo' ).and.callThrough();
 			spyOn( errorHandler, 'handler' ).and.callThrough();
 
-			interceptBackend.get( `/mi/sector_teams/${ teamId }/`, 200, '/sector_teams/sector_team' );
-			interceptBackend.get( `/mi/sector_teams/${ teamId }/months/`, 200, '/sector_teams/months' );
-			interceptBackend.get( `/mi/sector_teams/${ teamId }/campaigns/`, 200, '/sector_teams/campaigns' );
-			interceptBackend.get( `/mi/sector_teams/${ teamId }/top_non_hvcs/`, 200, '/sector_teams/top_non_hvcs' );
+			interceptBackend.getStub( `/mi/sector_teams/${ teamId }/`, 200, '/sector_teams/sector_team' );
+			interceptBackend.getStub( `/mi/sector_teams/${ teamId }/months/`, 200, '/sector_teams/months' );
+			interceptBackend.getStub( `/mi/sector_teams/${ teamId }/campaigns/`, 200, '/sector_teams/campaigns' );
+			interceptBackend.getStub( `/mi/sector_teams/${ teamId }/top_non_hvcs/`, 200, '/sector_teams/top_non_hvcs' );
 
 			controller.team( req, { render: function( view, data ){
 

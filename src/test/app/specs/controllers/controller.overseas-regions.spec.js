@@ -25,7 +25,7 @@ describe( 'Overseas Regions controller', function(){
 
 			spyOn( backendService, 'getOverseasRegionsOverview' ).and.callThrough();
 
-			interceptBackend.get( '/mi/os_regions/overview/', 200, '/os_regions/overview' );
+			interceptBackend.getStub( '/mi/os_regions/overview/', 200, '/os_regions/overview' );
 
 			controller.overview( req, { render: function( view, data ){
 
@@ -47,7 +47,7 @@ describe( 'Overseas Regions controller', function(){
 
 			spyOn( backendService, 'getOverseasRegions' ).and.callThrough();
 
-			interceptBackend.get( '/mi/os_regions/', 200, '/os_regions/' );
+			interceptBackend.getStub( '/mi/os_regions/', 200, '/os_regions/' );
 
 			controller.list( req, { render: function( view, data ){
 
@@ -74,10 +74,10 @@ describe( 'Overseas Regions controller', function(){
 
 			spyOn( backendService, 'getOverseasRegionInfo' ).and.callThrough();
 
-			interceptBackend.get( `/mi/os_regions/${ regionId }/`, 200, '/os_regions/region' );
-			interceptBackend.get( `/mi/os_regions/${ regionId }/months/`, 200, '/os_regions/months' );
-			interceptBackend.get( `/mi/os_regions/${ regionId }/campaigns/`, 200, '/os_regions/campaigns' );
-			interceptBackend.get( `/mi/os_regions/${ regionId }/top_non_hvcs/`, 200, '/os_regions/top_non_hvcs' );
+			interceptBackend.getStub( `/mi/os_regions/${ regionId }/`, 200, '/os_regions/region' );
+			interceptBackend.getStub( `/mi/os_regions/${ regionId }/months/`, 200, '/os_regions/months' );
+			interceptBackend.getStub( `/mi/os_regions/${ regionId }/campaigns/`, 200, '/os_regions/campaigns' );
+			interceptBackend.getStub( `/mi/os_regions/${ regionId }/top_non_hvcs/`, 200, '/os_regions/top_non_hvcs' );
 
 			controller.region( req, { render: function( view, data ){
 

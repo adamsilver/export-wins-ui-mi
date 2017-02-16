@@ -28,7 +28,7 @@ describe( 'Overseas Regions controller', function(){
 				alice: '87654'
 			};
 
-			interceptBackend.get( '/mi/hvc_groups/', 200, '/hvc_groups/' );
+			interceptBackend.getStub( '/mi/hvc_groups/', 200, '/hvc_groups/' );
 
 			controller.list( req, { render: function( view, data ){
 
@@ -55,9 +55,9 @@ describe( 'Overseas Regions controller', function(){
 			};
 			const groupId = req.params.id;
 
-			interceptBackend.get( `/mi/hvc_groups/${ groupId }/`, 200, '/hvc_groups/group' );
-			interceptBackend.get( `/mi/hvc_groups/${ groupId }/months/`, 200, '/hvc_groups/months' );
-			interceptBackend.get( `/mi/hvc_groups/${ groupId }/campaigns/`, 200, '/hvc_groups/campaigns' );
+			interceptBackend.getStub( `/mi/hvc_groups/${ groupId }/`, 200, '/hvc_groups/group' );
+			interceptBackend.getStub( `/mi/hvc_groups/${ groupId }/months/`, 200, '/hvc_groups/months' );
+			interceptBackend.getStub( `/mi/hvc_groups/${ groupId }/campaigns/`, 200, '/hvc_groups/campaigns' );
 
 			controller.group( req, { render: function( view, data ){
 
