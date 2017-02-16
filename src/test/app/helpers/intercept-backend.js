@@ -2,7 +2,14 @@ const nock = require( 'nock' );
 const config = require( '../../../app/config' );
 const getBackendStub = require( './get-backend-stub' );
 
+function get( path ){
+
+	return nock( config.backend.href ).get( path );
+}
+
 module.exports = {
+
+	get,
 
 	getStub: function( path, statusCode, stubPath ){
 
@@ -13,6 +20,6 @@ module.exports = {
 			data = getBackendStub( stubPath );
 		}
 
-		return nock( config.backend.href ).get( path ).reply( statusCode, data );
+		return get( path ).reply( statusCode, data );
 	}
 };

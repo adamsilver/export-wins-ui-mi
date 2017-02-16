@@ -1,4 +1,5 @@
 const proxyquire = require( 'proxyquire' );
+const interceptBackend = require( '../../helpers/intercept-backend' );
 
 let request;
 let raven;
@@ -24,25 +25,25 @@ function createBackend( opts = {} ){
 
 describe( 'Backend lib', function(){
 
-	beforeEach( function(){
-	
-		raven = {
-			captureMessage: jasmine.createSpy( 'raven.captureMessage' ) 
-		};
-
-		logger = {
-			warn: jasmine.createSpy( 'logger.warn' ),
-			error: jasmine.createSpy( 'logger.error' ),
-			debug: jasmine.createSpy( 'logger.debug' )
-		};
-
-		request = jasmine.createSpy( 'request' );
-		createSignature = jasmine.createSpy( 'createSignature' ).and.callFake( function(){ return 'test-hash'; } );
-
-		createBackend();
-	} );
-
 	describe( 'GET request', function(){
+
+		beforeEach( function(){
+		
+			raven = {
+				captureMessage: jasmine.createSpy( 'raven.captureMessage' ) 
+			};
+
+			logger = {
+				warn: jasmine.createSpy( 'logger.warn' ),
+				error: jasmine.createSpy( 'logger.error' ),
+				debug: jasmine.createSpy( 'logger.debug' )
+			};
+
+			request = jasmine.createSpy( 'request' );
+			createSignature = jasmine.createSpy( 'createSignature' ).and.callFake( function(){ return 'test-hash'; } );
+
+			createBackend();
+		} );
 
 		it( 'Should call request with the correct options', function( done ){
 		
@@ -227,7 +228,7 @@ describe( 'Backend lib', function(){
 				it( 'Should return the error', function( done ){
 					
 					request.and.callFake( function( opts, cb ){
-						
+
 						let err = new Error( 'Network failed' );
 						err.code = 'ECONNREFUSED';
 						cb( err );
@@ -244,6 +245,65 @@ describe( 'Backend lib', function(){
 						expect( data ).toBeUndefined();
 						done();
 					} );
+				} );
+			} );
+		} );
+	} );
+
+	describe( 'Intercepted request', function(){
+
+		beforeEach( function(){
+
+			backend = require( '../../../../app/lib/backend' );
+		} );
+	
+		describe( 'A 200 response', function(){
+		
+			it( 'Should return the JSON', function( done ){
+
+				interceptBackend.getStub( path, 200, '/sector_teams/' );
+		
+				backend.get( alice, path, function( err, response, data ){
+
+					expect( err ).toBeNull();
+					expect( response.statusCode ).toEqual( 200 );
+					expect( response.isSuccess ).toEqual( true );
+					expect( typeof data ).toEqual( 'object' );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'A 500 response', function(){
+		
+			it( 'Should return an error', function( done ){
+		
+				interceptBackend.get( path ).reply( 500 );
+
+				backend.get( alice, path, function( err, response, data ){
+
+					expect( err ).toBeDefined();
+					expect( response.statusCode ).toEqual( 500 );
+					expect( response.isSuccess ).toEqual( false );
+					expect( data ).toEqual( '' );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'A 404 response', function(){
+		
+			it( 'Should return an error', function( done ){
+		
+				interceptBackend.get( path ).reply( 404, 'not found' );
+
+				backend.get( alice, path, function( err, response, data ){
+
+					expect( err ).toBeDefined();
+					expect( response.statusCode ).toEqual( 404 );
+					expect( response.isSuccess ).toEqual( false );
+					expect( data ).toEqual( 'not found' );
+					done();
 				} );
 			} );
 		} );
