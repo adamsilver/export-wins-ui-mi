@@ -39,7 +39,7 @@ module.exports = {
 				regionName: data.wins.name,
 				summary: sectorSummary.create( data.wins ),
 				hvcSummary: hvcSummary.create( data.wins ),
-				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( data.hvcTargetPerformance ),
+				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( data.campaigns ),
 				sectorPerformance: sectorPerformanceDataSet.create( data.months ),
 				topNonHvc: data.topNonHvc,
 				topNonHvcScale: topNonHvcDataSet.create( data.topNonHvc ),
