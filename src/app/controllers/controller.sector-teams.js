@@ -34,20 +34,15 @@ module.exports = {
 
 		backendService.getSectorTeamInfo( req.alice, teamId ).then( ( data ) => {
 
-			const winsData = data[ 0 ];
-			const months = data[ 1 ];
-			const topNonHvc = data[ 2 ];
-			const campaigns = data[ 3 ];
-
 			res.render( 'sector-teams/detail.html', {
 				
-				sectorName: ( winsData.name + ' Sector Team' ),
-				summary: sectorSummary.create( winsData ),
-				hvcSummary: hvcSummary.create( winsData ),
-				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( campaigns ),
-				sectorPerformance: sectorPerformanceDataSet.create( months ),
-				topNonHvc,
-				topNonHvcScale: topNonHvcDataSet.create( topNonHvc )
+				sectorName: ( data.wins.name + ' Sector Team' ),
+				summary: sectorSummary.create( data.wins ),
+				hvcSummary: hvcSummary.create( data.wins ),
+				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( data.campaigns ),
+				sectorPerformance: sectorPerformanceDataSet.create( data.months ),
+				topNonHvc: data.topNonHvc,
+				topNonHvcScale: topNonHvcDataSet.create( data.topNonHvc )
 			} );
 
 		} ).catch( renderError.createHandler( res ) );

@@ -203,7 +203,16 @@ module.exports = {
 			getSectorTeamMonths( alice, teamId ),
 			getSectorTeamTopNonHvc( alice, teamId ),
 			getSectorTeamCampaigns( alice, teamId )
-		] );
+
+		] ).then( function( data ){
+
+			return {
+				wins: data[ 0 ],
+				months: data[ 1 ],
+				topNonHvc: data[ 2 ],
+				campaigns: data[ 3 ]
+			};
+		} );
 	},
 
 	getSectorTeamsOverview,
