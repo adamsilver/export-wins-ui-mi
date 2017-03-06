@@ -64,6 +64,7 @@ describe( 'Overseas Regions controller', function(){
 				expect( backendService.getHvcGroupInfo ).toHaveBeenCalledWith( req.alice, groupId );
 				expect( view ).toEqual( 'hvc-groups/detail.html' );
 				expect( data.sectorPerformance ).toBeDefined();
+				expect( data.summary ).toBeDefined();
 				expect( data.winSummary ).toBeDefined();
 				expect( data.sectorName ).toBeDefined();
 				expect( data.hvcTargetPerformance ).toBeDefined();

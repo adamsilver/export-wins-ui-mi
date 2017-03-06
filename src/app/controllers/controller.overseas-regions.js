@@ -3,10 +3,10 @@ const backendService = require( '../lib/service/service.backend' );
 const renderError = require( '../lib/render-error' );
 
 const sectorPerformanceDataSet = require( '../lib/data-sets/sector-performance' );
-const sectorWinsDataSet = require( '../lib/data-sets/sector-wins' );
 const topNonHvcDataSet = require( '../lib/data-sets/top-non-hvc' );
 const targetProgressDataSet = require( '../lib/data-sets/target-progress' );
 const hvcTargetPerformanceDataSet = require( '../lib/data-sets/hvc-target-performance' );
+const sectorSummary = require( '../lib/view-models/sector-summary' );
 
 module.exports = { 
 
@@ -44,15 +44,12 @@ module.exports = {
 			res.render( 'overseas-regions/detail.html', {
 				
 				regionName: winsData.name,
+				summary: sectorSummary.create( winsData ),
 				winSummary: {
 					target: winsData.hvcs.target,
 					totalConfirmed: winsData.wins.export.hvc.value.confirmed,
 					total: winsData.wins.export.hvc.value.total,
-					progress: targetProgressDataSet.create( winsData ),
-					averageTimeToConfirm: winsData.avg_time_to_confirm,
-					exportValue: winsData.exportValue,
-					exportValueTotal: winsData.exportValueTotal,
-					wins: sectorWinsDataSet.create( winsData )
+					progress: targetProgressDataSet.create( winsData )
 				},
 				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( hvcTargetPerformance ),
 				sectorPerformance: sectorPerformanceDataSet.create( months ),

@@ -92,6 +92,7 @@ describe( 'Overseas Regions controller', function(){
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( view ).toEqual( 'overseas-regions/detail.html' );
 				expect( data ).toBeDefined();
+				expect( data.summary ).toBeDefined();
 				done();
 			} } );
 		} );

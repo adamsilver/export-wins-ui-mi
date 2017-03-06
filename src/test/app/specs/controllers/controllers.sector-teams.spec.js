@@ -91,6 +91,7 @@ describe( 'Overseas Regions controller', function(){
 				expect( backendService.getSectorTeamInfo ).toHaveBeenCalledWith( req.alice, teamId );
 				expect( view ).toEqual( 'sector-teams/detail.html' );
 				expect( data.sectorName ).toBeDefined();
+				expect( data.summary ).toBeDefined();
 				expect( data.winSummary ).toBeDefined();
 				expect( data.hvcTargetPerformance ).toBeDefined();
 				expect( data.sectorPerformance ).toBeDefined();

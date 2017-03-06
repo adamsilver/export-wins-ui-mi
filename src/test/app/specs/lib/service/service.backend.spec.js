@@ -8,7 +8,6 @@ let stubs;
 let backendService;
 let monthsSpy;
 let campaignsSpy;
-let sectorSpy;
 let sectorTeamsOverviewSpy;
 let osRegionsOverviewSpy;
 let hvcGroupSpy;
@@ -28,7 +27,6 @@ describe( 'Backend service', function(){
 
 		monthsSpy = jasmine.createSpy( 'months' );
 		campaignsSpy = jasmine.createSpy( 'campaigns' );
-		sectorSpy = jasmine.createSpy( 'sector' );
 		sectorTeamsOverviewSpy = jasmine.createSpy( 'sector-teams-overview' );
 		osRegionsOverviewSpy = jasmine.createSpy( 'os-regions-overview' );
 		hvcGroupSpy = jasmine.createSpy( 'hvc-group' );
@@ -41,7 +39,6 @@ describe( 'Backend service', function(){
 			'../logger': require( '../../../helpers/mock-logger' ),
 			'../transformers/months': monthsSpy,
 			'../transformers/campaigns': campaignsSpy,
-			'../transformers/sector': sectorSpy,
 			'../transformers/sector-teams-overview': sectorTeamsOverviewSpy,
 			'../transformers/os-regions-overview': osRegionsOverviewSpy,
 			'../transformers/hvc-group': hvcGroupSpy,
@@ -65,9 +62,6 @@ describe( 'Backend service', function(){
 
 				expect( args[ 0 ] ).toEqual( alice );
 				expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/` );
-
-				expect( sectorSpy ).toHaveBeenCalled();
-				expect( sectorSpy.calls.count() ).toEqual( 1 );
 				done();
 			} );
 		} );
@@ -170,9 +164,6 @@ describe( 'Backend service', function(){
 
 				expect( args[ 0 ] ).toEqual( alice );
 				expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/` );
-
-				expect( sectorSpy ).toHaveBeenCalled();
-				expect( sectorSpy.calls.count() ).toEqual( 1 );
 				done();
 			} );
 		} );
