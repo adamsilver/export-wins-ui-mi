@@ -434,5 +434,64 @@ describe( 'Backend service', function(){
 				} );
 			} );
 		} );
+
+		describe( 'Getting the Overseas Region Info', function(){
+		
+			it( 'Should return several bits of data', function( done ){
+		
+				const regionId = 3;
+
+				const files = [
+					[ `/mi/os_regions/${ regionId }/`, '/os_regions/region' ],
+					[ `/mi/os_regions/${ regionId }/months/`, '/os_regions/months' ],
+					[ `/mi/os_regions/${ regionId }/campaigns/`, '/os_regions/campaigns' ],
+					[ `/mi/os_regions/${ regionId }/top_non_hvcs/`, '/os_regions/top_non_hvcs' ]
+				];
+
+				intercept( files );
+
+				backendService.getOverseasRegionInfo( alice, regionId ).then( ( data ) => {
+
+					expect( data.wins ).toBeDefined();
+					expect( data.months ).toBeDefined();
+					expect( data.campaigns ).toBeDefined();
+					expect( data.topNonHvc ).toBeDefined();
+					
+					//expect( data.wins ).toEqual( getBackendStub( '/sector_teams/sector_team' ) );
+					//expect( data.months ).toEqual( getBackendStub( '/sector_teams/months' ) );
+					//expect( data.campaigns ).toEqual( getBackendStub( '/sector_teams/campaigns' ) );
+					//expect( data.topNonHvc ).toEqual( getBackendStub( '/sector_teams/top_non_hvcs' ) );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'Getting the HVC Group Info', function(){
+		
+			it( 'Should return several bits of data', function( done ){
+		
+				const groupId = 3;
+
+				const files = [
+					[ `/mi/hvc_groups/${ groupId }/`, '/hvc_groups/group' ],
+					[ `/mi/hvc_groups/${ groupId }/months/`, '/hvc_groups/months' ],
+					[ `/mi/hvc_groups/${ groupId }/campaigns/`, '/hvc_groups/campaigns' ],
+				];
+
+				intercept( files );
+
+				backendService.getHvcGroupInfo( alice, groupId ).then( ( data ) => {
+
+					expect( data.wins ).toBeDefined();
+					expect( data.months ).toBeDefined();
+					expect( data.campaigns ).toBeDefined();
+					
+					//expect( data.wins ).toEqual( getBackendStub( '/sector_teams/sector_team' ) );
+					//expect( data.months ).toEqual( getBackendStub( '/sector_teams/months' ) );
+					//expect( data.campaigns ).toEqual( getBackendStub( '/sector_teams/campaigns' ) );
+					done();
+				} );
+			} );
+		} );
 	} );
 } );

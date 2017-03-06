@@ -24,16 +24,12 @@ module.exports = {
 
 		backendService.getHvcGroupInfo( req.alice, groupId ).then( ( data ) => {
 
-			const winsData = data[ 0 ];
-			const months = data[ 1 ];
-			const	campaigns = data[ 2 ];
-
 			res.render( 'hvc-groups/detail.html', {
-				sectorName: winsData.name,
-				summary: sectorSummary.create( winsData ),
-				hvcSummary: hvcSummary.create( winsData ),
-				sectorPerformance: sectorPerformanceDataSet.create( months ),
-				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( campaigns )
+				sectorName: data.wins.name,
+				summary: sectorSummary.create( data.wins ),
+				hvcSummary: hvcSummary.create( data.wins ),
+				sectorPerformance: sectorPerformanceDataSet.create( data.months ),
+				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( data.campaigns )
 			} );
 
 		} ).catch( renderError.createHandler( res ) );

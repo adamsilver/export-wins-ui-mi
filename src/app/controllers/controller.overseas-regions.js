@@ -34,20 +34,15 @@ module.exports = {
 
 		backendService.getOverseasRegionInfo( req.alice, regionId ).then( ( data ) => {
 
-			const winsData = data[ 0 ];
-			const months = data[ 1 ];
-			const topNonHvc = data[ 2 ];
-			const hvcTargetPerformance = data[ 3 ];
-
 			res.render( 'overseas-regions/detail.html', {
 				
-				regionName: winsData.name,
-				summary: sectorSummary.create( winsData ),
-				hvcSummary: hvcSummary.create( winsData ),
-				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( hvcTargetPerformance ),
-				sectorPerformance: sectorPerformanceDataSet.create( months ),
-				topNonHvc,
-				topNonHvcScale: topNonHvcDataSet.create( topNonHvc ),
+				regionName: data.wins.name,
+				summary: sectorSummary.create( data.wins ),
+				hvcSummary: hvcSummary.create( data.wins ),
+				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( data.hvcTargetPerformance ),
+				sectorPerformance: sectorPerformanceDataSet.create( data.months ),
+				topNonHvc: data.topNonHvc,
+				topNonHvcScale: topNonHvcDataSet.create( data.topNonHvc ),
 			} );
 
 		} ).catch( renderError.createHandler( res ) );
