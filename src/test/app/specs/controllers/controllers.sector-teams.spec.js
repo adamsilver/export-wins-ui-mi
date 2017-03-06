@@ -1,6 +1,10 @@
 const proxyquire = require( 'proxyquire' );
+
 const backendService = require( '../../../../app/lib/service/service.backend' );
 const errorHandler = require( '../../../../app/lib/render-error' );
+const sectorSummary = require( '../../../../app/lib/view-models/sector-summary' );
+const hvcSummary = require( '../../../../app/lib/view-models/sector-hvc-summary' );
+
 const interceptBackend = require( '../../helpers/intercept-backend' );
 
 let controller;
@@ -11,7 +15,9 @@ describe( 'Overseas Regions controller', function(){
 
 		const stubs = {
 			'../lib/service/service.backend': backendService,
-			'../lib/render-error': errorHandler
+			'../lib/render-error': errorHandler,
+			'../lib/view-models/sector-summary': sectorSummary,
+			'../lib/view-models/sector-hvc-summary': hvcSummary
 		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.sector-teams', stubs );
@@ -80,6 +86,8 @@ describe( 'Overseas Regions controller', function(){
 
 			spyOn( backendService, 'getSectorTeamInfo' ).and.callThrough();
 			spyOn( errorHandler, 'createHandler' ).and.callThrough();
+			spyOn( sectorSummary, 'create' ).and.callThrough();
+			spyOn( hvcSummary, 'create' ).and.callThrough();
 
 			interceptBackend.getStub( `/mi/sector_teams/${ teamId }/`, 200, '/sector_teams/sector_team' );
 			interceptBackend.getStub( `/mi/sector_teams/${ teamId }/months/`, 200, '/sector_teams/months' );
@@ -89,14 +97,19 @@ describe( 'Overseas Regions controller', function(){
 			controller.team( req, { render: function( view, data ){
 
 				expect( backendService.getSectorTeamInfo ).toHaveBeenCalledWith( req.alice, teamId );
-				expect( view ).toEqual( 'sector-teams/detail.html' );
+				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				expect( sectorSummary.create ).toHaveBeenCalled();
+				expect( hvcSummary.create ).toHaveBeenCalled();
+				
 				expect( data.sectorName ).toBeDefined();
 				expect( data.summary ).toBeDefined();
-				expect( data.winSummary ).toBeDefined();
+				expect( data.hvcSummary ).toBeDefined();
 				expect( data.hvcTargetPerformance ).toBeDefined();
 				expect( data.sectorPerformance ).toBeDefined();
 				expect( data.topNonHvc ).toBeDefined();
 				expect( data.topNonHvcScale ).toBeDefined();
+
+				expect( view ).toEqual( 'sector-teams/detail.html' );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
 			} } );

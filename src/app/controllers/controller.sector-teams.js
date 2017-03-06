@@ -4,11 +4,9 @@ const renderError = require( '../lib/render-error' );
 
 const sectorPerformanceDataSet = require( '../lib/data-sets/sector-performance' );
 const topNonHvcDataSet = require( '../lib/data-sets/top-non-hvc' );
-const targetProgressDataSet = require( '../lib/data-sets/target-progress' );
 const hvcTargetPerformanceDataSet = require( '../lib/data-sets/hvc-target-performance' );
 const sectorSummary = require( '../lib/view-models/sector-summary' );
-
-// .toLocaleString( 'en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 }
+const hvcSummary = require( '../lib/view-models/sector-hvc-summary' );
 
 module.exports = {
 
@@ -45,12 +43,7 @@ module.exports = {
 				
 				sectorName: ( winsData.name + ' Sector Team' ),
 				summary: sectorSummary.create( winsData ),
-				winSummary: {
-					target: winsData.hvcs.target,
-					totalConfirmed: winsData.wins.export.hvc.value.confirmed,
-					total: winsData.wins.export.hvc.value.total,
-					progress: targetProgressDataSet.create( winsData )
-				},
+				hvcSummary: hvcSummary.create( winsData ),
 				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( campaigns ),
 				sectorPerformance: sectorPerformanceDataSet.create( months ),
 				topNonHvc,

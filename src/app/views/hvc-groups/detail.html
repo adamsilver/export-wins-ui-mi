@@ -79,7 +79,7 @@
 	<script>
 		mi.pages.sector({
 			sectorPerformance: {{ sectorPerformance | dump | safe }},
-			targetProgress: {{ winSummary.progress.gauge | dump | safe }}
+			targetProgress: {{ hvcSummary.progress.gauge | dump | safe }}
 		});
 	</script>
 {% endblock pageScript %}
