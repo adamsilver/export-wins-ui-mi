@@ -4,7 +4,8 @@ const renderError = require( '../lib/render-error' );
 
 const sectorPerformanceDataSet = require( '../lib/data-sets/sector-performance' );
 const topNonHvcDataSet = require( '../lib/data-sets/top-non-hvc' );
-const hvcTargetPerformanceDataSet = require( '../lib/data-sets/hvc-target-performance' );
+
+const hvcTargetPerformance = require( '../lib/view-models/hvc-target-performance' );
 const sectorSummary = require( '../lib/view-models/sector-summary' );
 const hvcSummary = require( '../lib/view-models/sector-hvc-summary' );
 
@@ -39,7 +40,7 @@ module.exports = {
 				regionName: data.wins.name,
 				summary: sectorSummary.create( data.wins ),
 				hvcSummary: hvcSummary.create( data.wins ),
-				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( data.campaigns ),
+				hvcTargetPerformance: hvcTargetPerformance.create( data.campaigns ),
 				sectorPerformance: sectorPerformanceDataSet.create( data.months ),
 				topNonHvc: data.topNonHvc,
 				topNonHvcScale: topNonHvcDataSet.create( data.topNonHvc ),

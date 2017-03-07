@@ -4,6 +4,7 @@ const backendService = require( '../../../../app/lib/service/service.backend' );
 const errorHandler = require( '../../../../app/lib/render-error' );
 const sectorSummary = require( '../../../../app/lib/view-models/sector-summary' );
 const hvcSummary = require( '../../../../app/lib/view-models/sector-hvc-summary' );
+const hvcTargetPerformance = require( '../../../../app/lib/view-models/hvc-target-performance' );
 
 const interceptBackend = require( '../../helpers/intercept-backend' );
 
@@ -17,7 +18,8 @@ describe( 'Overseas Regions controller', function(){
 			'../lib/service/service.backend': backendService,
 			'../lib/render-error': errorHandler,
 			'../lib/view-models/sector-summary': sectorSummary,
-			'../lib/view-models/sector-hvc-summary': hvcSummary
+			'../lib/view-models/sector-hvc-summary': hvcSummary,
+			'../lib/view-models/hvc-target-performance': hvcTargetPerformance
 		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.sector-teams', stubs );
@@ -88,6 +90,7 @@ describe( 'Overseas Regions controller', function(){
 			spyOn( errorHandler, 'createHandler' ).and.callThrough();
 			spyOn( sectorSummary, 'create' ).and.callThrough();
 			spyOn( hvcSummary, 'create' ).and.callThrough();
+			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
 
 			interceptBackend.getStub( `/mi/sector_teams/${ teamId }/`, 200, '/sector_teams/sector_team' );
 			interceptBackend.getStub( `/mi/sector_teams/${ teamId }/months/`, 200, '/sector_teams/months' );
@@ -100,6 +103,7 @@ describe( 'Overseas Regions controller', function(){
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( sectorSummary.create ).toHaveBeenCalled();
 				expect( hvcSummary.create ).toHaveBeenCalled();
+				expect( hvcTargetPerformance.create ).toHaveBeenCalled();
 				
 				expect( data.sectorName ).toBeDefined();
 				expect( data.summary ).toBeDefined();
