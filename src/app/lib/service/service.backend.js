@@ -232,6 +232,7 @@ module.exports = {
 			getOverseasRegionMonths( alice, regionId ),
 			getOverseasRegionTopNonHvc( alice, regionId ),
 			getOverseasRegionCampaigns( alice, regionId )
+
 		] ).then( function( data ){
 
 			return {
@@ -266,6 +267,7 @@ module.exports = {
 			getHvcGroup( alice, parentId ),
 			getHvcGroupMonths( alice, parentId ),
 			getHvcGroupCampaigns( alice, parentId )
+
 		] ).then( function( data ){
 
 			return {
